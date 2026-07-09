@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Ahsan Ul Haq — SEO Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#4285F4;
+    --red:#EA4335;
+    --yellow:#FBBC05;
+    --green:#34A853;
+    --ink:#E8EAED;
+    --ink-soft:#9AA0A6;
+    --line:#3C4043;
+    --bg:#202124;
+    --bg-soft:#2A2B2E;
+    --bg-card:#292A2D;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 2px 10px rgba(0,0,0,.25);
+    --shadow-lg:0 4px 16px rgba(0,0,0,.35), 0 10px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Roboto',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'Roboto Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;background:rgba(32,33,36,0.85);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:1000px;margin:0 auto;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-size:19px;font-weight:700;letter-spacing:-0.01em;}
+  .brand .b0{color:var(--blue);} .brand .b1{color:var(--red);}
+  .brand .b2{color:var(--yellow);} .brand .b3{color:var(--blue);}
+  .brand .b4{color:var(--green);} .brand .b5{color:var(--red);}
+  .nav-links{display:flex;gap:30px;font-size:14px;font-weight:500;}
+  .nav-links a{color:var(--ink-soft);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  @media(max-width:680px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{padding:72px 0 56px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:500;color:var(--ink-soft);
+    background:var(--bg-soft);border:1px solid var(--line);
+    padding:6px 14px;border-radius:20px;margin-bottom:28px;
+    opacity:0;animation:fadeUp .6s ease forwards;
+  }
+  .eyebrow .dots{display:flex;gap:3px;}
+  .dot{width:6px;height:6px;border-radius:50%;}
+  h1.name{
+    font-size:clamp(38px,6.4vw,64px);font-weight:900;line-height:1.04;
+    letter-spacing:-0.02em;margin:0 0 20px;
+    opacity:0;animation:fadeUp .6s ease .08s forwards;
+  }
+  .hero-sub{
+    font-size:18px;line-height:1.65;color:var(--ink-soft);max-width:620px;margin:0 0 40px;
+    opacity:0;animation:fadeUp .6s ease .16s forwards;
+  }
+  .hero-sub b{color:var(--ink);font-weight:500;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  /* PERFORMANCE CARD - signature element */
+  .perf-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);padding:28px 30px 22px;max-width:720px;
+    opacity:0;animation:fadeUp .7s ease .26s forwards;
+  }
+  .perf-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
+  .perf-title{font-size:14px;font-weight:500;color:var(--ink-soft);display:flex;align-items:center;gap:8px;}
+  .perf-title svg{width:16px;height:16px;}
+  .perf-range{font-size:12.5px;color:var(--ink-soft);background:var(--bg-soft);padding:5px 12px;border-radius:14px;}
+  .perf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px;}
+  .perf-stat-label{font-size:12.5px;color:var(--ink-soft);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+  .perf-stat-label .sq{width:9px;height:9px;border-radius:2px;}
+  .perf-stat-val{font-size:26px;font-weight:700;letter-spacing:-0.01em;}
+  .perf-stat-trend{font-size:12px;color:var(--green);font-weight:500;}
+  .perf-chart{width:100%;height:auto;display:block;}
+  @media(max-width:640px){.perf-stats{grid-template-columns:1fr 1fr;}}
+
+  /* SECTIONS */
+  .section{padding:76px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:40px;}
+  .section-eyebrow{
+    font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  }
+  .section-eyebrow .sq{width:10px;height:10px;border-radius:3px;}
+  .section-title{font-size:clamp(26px,4vw,36px);font-weight:700;margin:0;letter-spacing:-0.01em;}
+
+  /* STATS GRID */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 20px;box-shadow:var(--shadow);
+  }
+  .stat-num{font-size:clamp(28px,3.4vw,36px);font-weight:900;display:block;margin-bottom:8px;line-height:1;}
+  .stat-label{font-size:13px;color:var(--ink-soft);line-height:1.4;}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+  /* EXPERIENCE */
+  .job{padding:0 0 52px;}
+  .job:last-child{padding-bottom:0;}
+  .job-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+  .job-role{font-size:23px;font-weight:700;margin:0;}
+  .job-dates{font-size:13px;color:var(--ink-soft);font-weight:500;background:var(--bg-soft);padding:5px 12px;border-radius:14px;white-space:nowrap;}
+  .job-company{font-size:15px;font-weight:500;margin-bottom:20px;}
+  .job-company .c-blue{color:var(--blue);}
+  .job-lead{font-size:15px;color:var(--ink-soft);line-height:1.65;margin-bottom:22px;max-width:760px;}
+
+  .site-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px;}
+  .site-card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--bg-soft);}
+  .site-card-top{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;margin-bottom:8px;}
+  .site-card-top .sq{width:9px;height:9px;border-radius:2px;}
+  .site-card p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  @media(max-width:640px){.site-cards{grid-template-columns:1fr;}}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .cat{border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .cat-head{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;margin-bottom:10px;}
+  .cat-head .sq{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+  .cat-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .mini-tag{font-size:11.5px;color:var(--ink-soft);background:var(--bg-soft);padding:3px 9px;border-radius:6px;}
+  @media(max-width:640px){.cat-grid{grid-template-columns:1fr;}}
+
+  /* FULL SKILLS SECTION */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:760px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* TOOLS */
+  .tools-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .tool-pill{
+    display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;
+    border:1px solid var(--line);border-radius:24px;padding:9px 16px;background:var(--bg-soft);
+  }
+  .tool-pill .sq{width:8px;height:8px;border-radius:50%;}
+
+  /* CERTIFICATIONS */
+  .cert-card{
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;
+    display:flex;gap:22px;align-items:flex-start;box-shadow:var(--shadow);flex-wrap:wrap;
+  }
+  .cert-badge{
+    width:56px;height:56px;border-radius:14px;flex-shrink:0;
+    background:conic-gradient(var(--blue) 0 25%, var(--red) 25% 50%, var(--yellow) 50% 75%, var(--green) 75% 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cert-badge svg{width:26px;height:26px;}
+  .cert-title{font-size:17px;font-weight:700;margin:0 0 4px;}
+  .cert-meta{font-size:13px;color:var(--ink-soft);margin-bottom:14px;}
+  .cert-modules{display:flex;flex-wrap:wrap;gap:7px;}
+  .cert-mod{font-size:12px;color:var(--ink-soft);background:var(--bg-soft);padding:4px 10px;border-radius:6px;}
+
+  /* EDUCATION */
+  .edu-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid var(--line);flex-wrap:wrap;gap:6px;}
+  .edu-row:first-child{border-top:none;}
+  .edu-degree{font-size:16px;font-weight:500;}
+  .edu-school{color:var(--ink-soft);font-size:14px;}
+  .edu-status{font-size:12px;font-weight:500;color:var(--ink-soft);background:var(--bg-soft);padding:4px 12px;border-radius:12px;}
+
+  /* FOOTER */
+  footer{padding:80px 0 56px;border-top:1px solid var(--line);background:var(--bg-soft);text-align:center;}
+  .footer-title{font-size:clamp(30px,5vw,46px);font-weight:900;margin:0 0 20px;letter-spacing:-0.02em;}
+  .footer-sub{color:var(--ink-soft);font-size:15px;max-width:460px;margin:0 auto 34px;line-height:1.6;}
+  .contact-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .btn{font-size:14.5px;font-weight:500;padding:13px 24px;border-radius:24px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s, box-shadow .2s;}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(66,133,244,.35);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(66,133,244,.4);}
+  .btn-outline{border:1px solid var(--line);color:var(--ink);background:var(--bg-soft);}
+  .btn-outline:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+  .footer-loc{margin-top:40px;font-size:12px;color:var(--ink-soft);letter-spacing:.04em;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="b0">A</span><span class="b1">h</span><span class="b2">s</span><span class="b3">a</span><span class="b4">n</span><span class="b5">.</span>seo</div>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#tools">Tools</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="dots">
+        <span class="dot" style="background:var(--blue)"></span>
+        <span class="dot" style="background:var(--red)"></span>
+        <span class="dot" style="background:var(--yellow)"></span>
+        <span class="dot" style="background:var(--green)"></span>
+      </span>
+      SEO Specialist — Karachi, Pakistan
+    </div>
+    <h1 class="name">Muhammad<br>Ahsan Ul Haq</h1>
+    <p class="hero-sub">
+      <b>SEO Specialist</b> with 2.5+ years managing end-to-end organic growth — strategy,
+      technical SEO, content, local SEO, off-page authority building, and analytics —
+      for 50+ clients and two owned websites.
+    </p>
+
+    <div class="perf-card">
+      <div class="perf-head">
+        <div class="perf-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>
+          Search Performance — Overview
+        </div>
+        <div class="perf-range mono">LAST 6 MONTHS</div>
+      </div>
+      <div class="perf-stats">
+        <div>
+          <div class="perf-stat-label"><span class="sq" style="background:var(--blue)"></span>Clicks</div>
+          <div class="perf-stat-val">↑ Growth</div>
+          <div class="perf-stat-trend">trending up</div>
+        </div>
+        <div>
+          <div class="perf-stat-label"><span class="sq" style="background:var(--green)"></span>Avg. position</div>
+          <div class="perf-stat-val">30→3</div>
+          <div class="perf-stat-trend">top 3 achieved</div>
+        </div>
+        <div>
+          <div class="perf-stat-label"><span class="sq" style="background:var(--yellow)"></span>Spam score</div>
+          <div class="perf-stat-val">High→Low</div>
+          <div class="perf-stat-trend">cleaned up</div>
+        </div>
+      </div>
+      <svg class="perf-chart" viewBox="0 0 660 140" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="fillBlue" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4285F4" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#4285F4" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="30" x2="660" y2="30" stroke="#3C4043" stroke-width="1"/>
+        <line x1="0" y1="70" x2="660" y2="70" stroke="#3C4043" stroke-width="1"/>
+        <line x1="0" y1="110" x2="660" y2="110" stroke="#3C4043" stroke-width="1"/>
+        <path id="chartFill" d="M0,120 C60,118 100,115 140,108 C190,100 220,95 260,88 C310,80 340,70 380,60 C420,50 460,45 500,35 C540,26 580,18 620,12 L660,8 L660,140 L0,140 Z" fill="url(#fillBlue)"/>
+        <path id="chartLine" d="M0,120 C60,118 100,115 140,108 C190,100 220,95 260,88 C310,80 340,70 380,60 C420,50 460,45 500,35 C540,26 580,18 620,12 L660,8" fill="none" stroke="#4285F4" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section reveal" style="padding-top:0;border-top:none;">
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-num" style="color:var(--blue)" data-count="2.5" data-suffix="+">0</span>
+        <span class="stat-label">Years in SEO strategy &amp; execution</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" style="color:var(--red)" data-count="50" data-suffix="+">0</span>
+        <span class="stat-label">Clients managed across industries</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" style="color:var(--yellow)" data-count="2" data-suffix="">0</span>
+        <span class="stat-label">Websites owned end-to-end (WordPress &amp; Shopify)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" style="color:var(--green)" data-count="1800" data-suffix="+">0</span>
+        <span class="stat-label">Toxic backlinks cleaned from one spam penalty</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section reveal" id="experience">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:var(--blue)"><span class="sq" style="background:var(--blue)"></span>Experience</div>
+      <h2 class="section-title">Where I've built organic growth</h2>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <h3 class="job-role">SEO Manager</h3>
+        <div class="job-dates mono">Feb 2026 — Present</div>
+      </div>
+      <div class="job-company"><span class="c-blue">Finix Solution</span></div>
+      <p class="job-lead">
+        Own the entire SEO function for two websites end-to-end — not just executing tasks,
+        but planning, building, and maintaining organic growth from the ground up.
+      </p>
+
+      <div class="site-cards">
+        <div class="site-card">
+          <div class="site-card-top"><span class="sq" style="background:var(--blue)"></span>WordPress — USA (Custom Patches)</div>
+          <p>Started around keyword positions 30–40 with a high spam score. Improved technical
+          SEO, content, and site health while cleaning up 1,800+ toxic backlinks to recover
+          domain trust and rankings.</p>
+        </div>
+        <div class="site-card">
+          <div class="site-card-top"><span class="sq" style="background:var(--green)"></span>Shopify — Pakistan (Mobile Accessories)</div>
+          <p>Started with almost no keyword visibility. Grew target keywords to approximately
+          top-3 positions through structured on-page, local, and technical SEO work.</p>
+        </div>
+      </div>
+
+      <div class="cat-grid">
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Technical SEO</div>
+          <div class="cat-tags">
+            <span class="mini-tag">GSC &amp; GA setup</span><span class="mini-tag">Tag Manager</span>
+            <span class="mini-tag">XML sitemaps</span><span class="mini-tag">Indexing fixes</span>
+            <span class="mini-tag">Canonical tags</span><span class="mini-tag">Schema fixes</span>
+            <span class="mini-tag">Site speed</span><span class="mini-tag">Security headers</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--red)"></span>Content &amp; On-Page</div>
+          <div class="cat-tags">
+            <span class="mini-tag">Homepage &amp; service pages</span><span class="mini-tag">Blog writing</span>
+            <span class="mini-tag">Meta &amp; heading optimization</span><span class="mini-tag">Internal linking</span>
+            <span class="mini-tag">Content humanization</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>Local SEO &amp; CRO</div>
+          <div class="cat-tags">
+            <span class="mini-tag">Google Business Profile</span><span class="mini-tag">GMB posts &amp; reviews</span>
+            <span class="mini-tag">Lead form optimization</span><span class="mini-tag">CTA improvements</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--green)"></span>AI &amp; Platform Management</div>
+          <div class="cat-tags">
+            <span class="mini-tag">AI chatbot implementation</span><span class="mini-tag">llms.txt</span>
+            <span class="mini-tag">Google Merchant Center</span><span class="mini-tag">WordPress &amp; Shopify admin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <h3 class="job-role">SEO Executive</h3>
+        <div class="job-dates mono">Jan 2024 — Jan 2026</div>
+      </div>
+      <div class="job-company"><span class="c-blue">Lime Software Logics (SMC-Pvt) Ltd.</span></div>
+      <p class="job-lead">
+        Managed SEO campaigns for 47+ clients across different industries — building
+        tailored strategies rather than a one-size-fits-all process, and reporting
+        results back in terms clients actually cared about.
+      </p>
+
+      <div class="cat-grid">
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Strategy &amp; Keyword Research</div>
+          <div class="cat-tags">
+            <span class="mini-tag">SEO roadmaps</span><span class="mini-tag">Competitor analysis</span>
+            <span class="mini-tag">Keyword mapping</span><span class="mini-tag">Search intent analysis</span>
+            <span class="mini-tag">Keyword gap analysis</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--red)"></span>On-Page SEO</div>
+          <div class="cat-tags">
+            <span class="mini-tag">Meta titles &amp; descriptions</span><span class="mini-tag">Heading hierarchy</span>
+            <span class="mini-tag">Anchor text</span><span class="mini-tag">Featured snippet optimization</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>Off-Page &amp; Local SEO</div>
+          <div class="cat-tags">
+            <span class="mini-tag">Authority &amp; citation building</span><span class="mini-tag">Guest post outreach</span>
+            <span class="mini-tag">Local pack optimization</span><span class="mini-tag">NAP consistency</span>
+          </div>
+        </div>
+        <div class="cat">
+          <div class="cat-head"><span class="sq" style="background:var(--green)"></span>Analytics &amp; Client Reporting</div>
+          <div class="cat-tags">
+            <span class="mini-tag">Rankings &amp; traffic tracking</span><span class="mini-tag">Conversion tracking</span>
+            <span class="mini-tag">Monthly client reports</span><span class="mini-tag">Multi-project management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section reveal" id="skills">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:var(--red)"><span class="sq" style="background:var(--red)"></span>Skills</div>
+      <h2 class="section-title">The full SEO stack, owned end-to-end</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>SEO Strategy &amp; Planning</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Website audits</span><span class="mini-tag">Competitor research</span>
+          <span class="mini-tag">Keyword strategy</span><span class="mini-tag">Ranking tracking</span>
+          <span class="mini-tag">Task prioritization</span>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--red)"></span>Technical SEO</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Crawlability &amp; indexability</span><span class="mini-tag">Core Web Vitals</span>
+          <span class="mini-tag">Redirects</span><span class="mini-tag">Structured data</span>
+          <span class="mini-tag">Site health monitoring</span>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>On-Page &amp; Content SEO</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Content planning</span><span class="mini-tag">SEO copywriting</span>
+          <span class="mini-tag">Readability improvements</span><span class="mini-tag">FAQ optimization</span>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--green)"></span>Off-Page SEO</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Authority building</span><span class="mini-tag">Citations &amp; guest posts</span>
+          <span class="mini-tag">Spam link cleanup</span><span class="mini-tag">Google Disavow</span>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Local SEO &amp; Schema</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Google Business Profile</span><span class="mini-tag">Local Business schema</span>
+          <span class="mini-tag">Product &amp; FAQ schema</span><span class="mini-tag">Review management</span>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-head"><span class="sq" style="background:var(--red)"></span>CRO, AI &amp; Automation</div>
+        <div class="cat-tags">
+          <span class="mini-tag">Conversion optimization</span><span class="mini-tag">AI chatbot training</span>
+          <span class="mini-tag">llms.txt implementation</span><span class="mini-tag">Customer journey mapping</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="section reveal" id="tools">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:var(--yellow)"><span class="sq" style="background:var(--yellow)"></span>Tools</div>
+      <h2 class="section-title">Platforms I work in daily</h2>
+    </div>
+    <div class="tools-row">
+      <span class="tool-pill"><span class="sq" style="background:var(--blue)"></span>Google Search Console</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--red)"></span>Google Analytics (GA4)</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--yellow)"></span>Google Tag Manager</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--green)"></span>Google Business Profile</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--blue)"></span>Google Merchant Center</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--red)"></span>Moz</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--yellow)"></span>SEMrush</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--green)"></span>BrightLocal</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--blue)"></span>SEOptimer</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--red)"></span>WordPress</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--yellow)"></span>Shopify</span>
+      <span class="tool-pill"><span class="sq" style="background:var(--green)"></span>Google Sheets</span>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section reveal" id="certifications">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:var(--green)"><span class="sq" style="background:var(--green)"></span>Certifications</div>
+      <h2 class="section-title">Formal training</h2>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div>
+        <h3 class="cert-title">Fundamentals of Digital Marketing — Google Digital Garage</h3>
+        <div class="cert-meta">Score: 100 / 100 · Completion ID 179082332 · plus 13 further modules completed</div>
+        <div class="cert-modules">
+          <span class="cert-mod">Online business security</span>
+          <span class="cert-mod">Basics of code</span>
+          <span class="cert-mod">Get a business online</span>
+          <span class="cert-mod">Self-promotion</span>
+          <span class="cert-mod">Online advertising</span>
+          <span class="cert-mod">Customer behavior</span>
+          <span class="cert-mod">Mobile marketing</span>
+          <span class="cert-mod">Content marketing</span>
+          <span class="cert-mod">Business communication</span>
+          <span class="cert-mod">Effective networking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section reveal">
+    <div class="section-head">
+      <div class="section-eyebrow" style="color:var(--blue)"><span class="sq" style="background:var(--blue)"></span>Education</div>
+      <h2 class="section-title">Academic background</h2>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">Master of Business Administration (MBA)</div>
+        <div class="edu-school">Iqra University</div>
+      </div>
+      <div class="edu-status">In progress</div>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">Bachelor of Business Administration (Honours)</div>
+        <div class="edu-school">Iqra University</div>
+      </div>
+      <div class="edu-status">Graduated 2025</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="reveal" id="contact">
+  <div class="wrap">
+    <h2 class="footer-title">Let's grow your search visibility.</h2>
+    <p class="footer-sub">Open to SEO Manager, SEO Executive, and full-funnel SEO consulting roles.</p>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="mailto:Aulhaq65@gmail.com">Email Ahsan →</a>
+      <a class="btn btn-outline" href="tel:+923332293391">+92 333 2293391</a>
+    </div>
+    <div class="footer-loc mono">KARACHI, PAKISTAN — AVAILABLE REMOTE</div>
+  </div>
+</footer>
+
+<script>
+  const stats = document.querySelectorAll('.stat-num');
+  const statObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const isDecimal = target % 1 !== 0;
+        let current = 0;
+        const step = target / 40;
+        const tick = () => {
+          current += step;
+          if(current >= target){
+            el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+          } else {
+            el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+            requestAnimationFrame(tick);
+          }
+        };
+        tick();
+        statObserver.unobserve(el);
+      }
+    });
+  }, {threshold:0.4});
+  stats.forEach(el=>statObserver.observe(el));
+
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  reveals.forEach(el=>revealObserver.observe(el));
+</script>
+
+</body>
+</html>
