@@ -31,6 +31,11 @@
     font-family:'Roboto',Arial,sans-serif;-webkit-font-smoothing:antialiased;
   }
   .mono{font-family:'Roboto Mono',monospace;}
+  .rotate-word{
+    display:inline-block;background:linear-gradient(135deg, var(--blue), var(--green));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    transition:opacity .3s ease;
+  }
   h1.headline, .section-title, .brand, .tl-role, .proj-title, .service-title, .cat-head,
   .cert-title, .resume-title, .pipe-title, .mt-title{
     font-family:'Manrope', sans-serif;
@@ -118,6 +123,31 @@
   .mini-tag{font-family:'Roboto Mono',monospace;font-size:11px;color:var(--ink-soft);border:1px solid var(--line);padding:4px 10px;border-radius:6px;}
   @media(max-width:640px){.perf-stats{grid-template-columns:1fr 1fr;}}
 
+  /* AUDIT DEMO WIDGET */
+  .audit-card{padding:22px 26px 24px;}
+  .audit-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .audit-input-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .audit-input-row input{
+    flex:1;min-width:200px;padding:12px 15px;border-radius:8px;background:var(--bg-soft);
+    border:1px solid var(--line);color:var(--ink);font-family:'Roboto',sans-serif;font-size:13.5px;outline:none;
+    transition:border-color .2s;
+  }
+  .audit-input-row input:focus{border-color:var(--blue);}
+  .audit-results{margin-top:18px;display:none;}
+  .audit-results.show{display:block;animation:fadeUp .4s ease;}
+  .audit-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:11px 0;border-top:1px solid var(--line);font-size:13.5px;opacity:0;
+  }
+  .audit-row:first-child{border-top:none;}
+  .audit-row.in{animation:fadeUp .4s ease forwards;}
+  .audit-row-label{display:flex;align-items:center;gap:10px;color:var(--ink-soft);}
+  .audit-row-label svg{width:15px;height:15px;flex-shrink:0;}
+  .audit-status{font-family:'Roboto Mono',monospace;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:6px;}
+  .audit-status.good{color:var(--green);background:rgba(34,197,94,.1);}
+  .audit-status.warn{color:var(--yellow);background:rgba(245,166,35,.1);}
+  .audit-note{font-size:12px;color:var(--ink-dim);margin-top:14px;line-height:1.6;}
+
   /* SECTIONS */
   .section{padding:88px 0;border-top:1px solid var(--line);}
   .section-head{margin-bottom:42px;max-width:660px;}
@@ -163,6 +193,15 @@
   .pipe-connector{display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:16px;}
 
   /* SKILLS MATRIX */
+  .filter-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px;}
+  .filter-btn{
+    font-family:'Roboto',sans-serif;font-size:13px;font-weight:500;color:var(--ink-soft);
+    background:var(--bg-card);border:1px solid var(--line);padding:8px 16px;border-radius:18px;
+    cursor:pointer;transition:all .2s ease;
+  }
+  .filter-btn:hover{border-color:var(--blue);color:var(--ink);}
+  .filter-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .cat.hidden{display:none;}
   .matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   @media(max-width:900px){.matrix{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:640px){.matrix{grid-template-columns:1fr;}}
@@ -331,7 +370,7 @@
       </span>
       SEO Specialist — Karachi, Pakistan
     </div>
-    <h1 class="headline">Helping Businesses Grow Through Strategic SEO</h1>
+    <h1 class="headline">Helping Businesses Grow Through <span id="rotateWord" class="rotate-word">Strategic</span> SEO</h1>
     <p class="hero-sub">
       SEO Specialist focused on on-page, technical, and local SEO, content optimization,
       and data-driven growth strategies that increase organic traffic and search
@@ -389,6 +428,21 @@
         <span class="mini-tag">local seo</span>
         <span class="mini-tag">schema</span>
       </div>
+    </div>
+
+    <div class="card audit-card" style="max-width:720px;margin-top:18px;position:relative;z-index:1;">
+      <div class="audit-head">
+        <div class="perf-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Try a Mini SEO Check
+        </div>
+        <span class="mini-tag">interactive demo</span>
+      </div>
+      <div class="audit-input-row">
+        <input type="text" id="auditUrl" placeholder="Enter any website name or URL (e.g. yourbusiness.com)">
+        <button class="btn btn-primary" id="auditBtn" type="button" style="border:none;cursor:pointer;">Run Check</button>
+      </div>
+      <div id="auditResults" class="audit-results"></div>
     </div>
   </section>
 
@@ -508,52 +562,60 @@
       <h2 class="section-title">The full SEO stack, owned end-to-end</h2>
       <p class="section-desc">Twelve disciplines, built through both agency-scale execution and single-site ownership.</p>
     </div>
-    <div class="matrix">
-      <div class="card cat">
+    <div class="filter-row" id="skillFilters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="strategy">Strategy</button>
+      <button class="filter-btn" data-filter="onpage">On-Page</button>
+      <button class="filter-btn" data-filter="technical">Technical</button>
+      <button class="filter-btn" data-filter="offpage">Off-Page</button>
+      <button class="filter-btn" data-filter="local">Local</button>
+    </div>
+    <div class="matrix" id="skillMatrix">
+      <div class="card cat" data-group="strategy">
         <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Strategy &amp; Planning</div>
         <div class="cat-tags"><span class="mini-tag">Website audits</span><span class="mini-tag">Competitor research</span><span class="mini-tag">Keyword mapping</span><span class="mini-tag">Roadmap planning</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="strategy">
         <div class="cat-head"><span class="sq" style="background:var(--red)"></span>Keyword Research</div>
         <div class="cat-tags"><span class="mini-tag">Commercial &amp; long-tail</span><span class="mini-tag">Search volume</span><span class="mini-tag">SERP analysis</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="onpage">
         <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>On-Page SEO</div>
         <div class="cat-tags"><span class="mini-tag">Meta &amp; headings</span><span class="mini-tag">Internal linking</span><span class="mini-tag">Readability</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="technical">
         <div class="cat-head"><span class="sq" style="background:var(--green)"></span>Technical SEO</div>
         <div class="cat-tags"><span class="mini-tag">Crawlability</span><span class="mini-tag">Core Web Vitals</span><span class="mini-tag">Site health</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="onpage">
         <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Content SEO</div>
         <div class="cat-tags"><span class="mini-tag">Blog &amp; page content</span><span class="mini-tag">SEO copywriting</span><span class="mini-tag">FAQ optimization</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="offpage">
         <div class="cat-head"><span class="sq" style="background:var(--red)"></span>Off-Page SEO</div>
         <div class="cat-tags"><span class="mini-tag">Authority building</span><span class="mini-tag">Citations</span><span class="mini-tag">Disavow / cleanup</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="local">
         <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>Local SEO</div>
         <div class="cat-tags"><span class="mini-tag">Google Business Profile</span><span class="mini-tag">NAP consistency</span><span class="mini-tag">Local pack</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="technical">
         <div class="cat-head"><span class="sq" style="background:var(--green)"></span>Schema Markup</div>
         <div class="cat-tags"><span class="mini-tag">Local Business</span><span class="mini-tag">Product</span><span class="mini-tag">FAQ schema</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="technical">
         <div class="cat-head"><span class="sq" style="background:var(--blue)"></span>Website Management</div>
         <div class="cat-tags"><span class="mini-tag">WordPress / Shopify</span><span class="mini-tag">Backups &amp; plugins</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="onpage">
         <div class="cat-head"><span class="sq" style="background:var(--red)"></span>CRO</div>
         <div class="cat-tags"><span class="mini-tag">Lead form optimization</span><span class="mini-tag">CTA improvements</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="technical">
         <div class="cat-head"><span class="sq" style="background:var(--yellow)"></span>AI &amp; Automation</div>
         <div class="cat-tags"><span class="mini-tag">AI chatbot</span><span class="mini-tag">llms.txt</span></div>
       </div>
-      <div class="card cat">
+      <div class="card cat" data-group="strategy">
         <div class="cat-head"><span class="sq" style="background:var(--green)"></span>Analytics &amp; Reporting</div>
         <div class="cat-tags"><span class="mini-tag">GSC / GA4</span><span class="mini-tag">Client reporting</span></div>
       </div>
@@ -899,7 +961,65 @@
   }, {threshold:0.4});
   nums.forEach(el=>numIo.observe(el));
 
-  /* contact form -> mailto */
+  /* rotating headline word */
+  const rotateWords = ['Strategic','Technical','On-Page','Off-Page','Local'];
+  let rwIndex = 0;
+  const rwEl = document.getElementById('rotateWord');
+  setInterval(()=>{
+    rwIndex = (rwIndex+1) % rotateWords.length;
+    rwEl.style.opacity = 0;
+    setTimeout(()=>{ rwEl.textContent = rotateWords[rwIndex]; rwEl.style.opacity = 1; }, 300);
+  }, 2600);
+
+  /* skill filter buttons */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const catCards = document.querySelectorAll('#skillMatrix .cat');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      catCards.forEach(card=>{
+        const show = (f === 'all' || card.dataset.group === f);
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+
+  /* interactive mini SEO audit demo */
+  document.getElementById('auditBtn').addEventListener('click', ()=>{
+    const urlInput = document.getElementById('auditUrl');
+    const resultsEl = document.getElementById('auditResults');
+    const val = urlInput.value.trim() || 'your-website.com';
+
+    const checks = [
+      {label:`Crawlability for ${val}`, status:'good', text:'Indexable'},
+      {label:'Mobile responsiveness', status:'good', text:'Passing'},
+      {label:'Meta title & description', status:'warn', text:'Needs work'},
+      {label:'Core Web Vitals', status:'good', text:'Healthy'},
+      {label:'Schema markup detected', status:'warn', text:'Missing'},
+      {label:'Backlink profile', status:'good', text:'Stable'}
+    ];
+    const icon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>';
+
+    resultsEl.innerHTML = checks.map(c=>
+      `<div class="audit-row"><div class="audit-row-label">${icon}${c.label}</div><span class="audit-status ${c.status}">${c.text}</span></div>`
+    ).join('') + `<div class="audit-note">This is an illustrative demo, not a live scan — it shows the kind of checklist a real audit covers. Want an actual audit of your site? <a href="#contact" style="color:var(--blue);">Get in touch</a>.</div>`;
+
+    resultsEl.classList.add('show');
+    const rows = resultsEl.querySelectorAll('.audit-row');
+    rows.forEach((row, i)=>{
+      setTimeout(()=>row.classList.add('in'), i*120);
+    });
+  });
+
+  /* contact form -> mailto, with live validation feedback */
+  const formFields = ['cName','cEmail','cMessage'].map(id=>document.getElementById(id));
+  formFields.forEach(field=>{
+    field.addEventListener('input', ()=>{
+      field.style.borderColor = field.value.trim() ? 'var(--green)' : 'var(--line)';
+    });
+  });
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
     const name = document.getElementById('cName').value;
@@ -907,7 +1027,15 @@
     const msg = document.getElementById('cMessage').value;
     const subject = encodeURIComponent(`Project inquiry from ${name}`);
     const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:Aulhaq65@gmail.com?subject=${subject}&body=${body}`;
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Opening your email client...';
+    submitBtn.style.opacity = '0.7';
+    setTimeout(()=>{
+      window.location.href = `mailto:Aulhaq65@gmail.com?subject=${subject}&body=${body}`;
+      submitBtn.textContent = originalText;
+      submitBtn.style.opacity = '1';
+    }, 400);
   });
 </script>
 
