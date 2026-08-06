@@ -2,379 +2,709 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Muhammad Ahsan Ul Haq — SEO Specialist</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Ahsan Ul Haq — SEO Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fff;
-    --ink:#202124;
-    --muted:#5f6368;
-    --link:#1558d6;
-    --visited:#609;
-    --green:#188038;
-    --accent:#1a73e8;
-    --amber:#e8710a;
-    --line:#ebebeb;
-    --chip:#f1f3f4;
+    --bg:#0B0F14;
+    --panel:#11161D;
+    --panel2:#161C24;
+    --ink:#EDEFF2;
+    --muted:#8B95A1;
+    --line:#232B35;
+    --blue:#3B9EFF;
+    --green:#22D3A6;
+    --amber:#F5B942;
+    --paper:#F6F7F9;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:700px;margin:0 auto;padding:28px 20px 80px;}
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .container{max-width:1120px;margin:0 auto;padding:0 32px;}
+  section{padding:96px 0;}
+  @media (max-width:720px){section{padding:60px 0;} .container{padding:0 20px;}}
 
-  /* Header / search bar */
-  .brand{
-    display:flex;align-items:baseline;gap:2px;
-    font-family:'Product Sans', Arial, sans-serif;
-    font-size:28px;font-weight:700;margin-bottom:18px;
-    user-select:none;
+  /* subtle grid texture */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:48px 48px;
   }
-  .brand span:nth-child(1){color:#4285F4;}
-  .brand span:nth-child(2){color:#EA4335;}
-  .brand span:nth-child(3){color:#FBBC05;}
-  .brand span:nth-child(4){color:#4285F4;}
-  .brand span:nth-child(5){color:#34A853;}
-  .brand span:nth-child(6){color:#EA4335;}
 
-  .searchbox{
-    display:flex;align-items:center;gap:10px;
-    border:1px solid #dfe1e5;border-radius:24px;
-    padding:11px 18px;box-shadow:0 1px 6px rgba(32,33,36,.15);
-    margin-bottom:6px;
-  }
-  .searchbox svg{flex-shrink:0;color:var(--muted);}
-  #searchInput{
-    border:none;outline:none;flex:1;font-size:16px;color:var(--ink);
-    font-family:Arial,sans-serif;
-  }
-  .stats{color:var(--muted);font-size:13px;margin:10px 2px 22px;}
-  .stats b{color:var(--ink);}
+  /* NAV */
+  nav{position:sticky;top:0;z-index:60;background:rgba(11,15,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);border-top:3px solid;border-image:linear-gradient(90deg,#4285F4,#EA4335,#FBBC05,#34A853) 1;}
+  .nav-inner{max-width:1120px;margin:0 auto;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;}
+  .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px;}
+  .nav-logo .d{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 3px rgba(34,211,166,.15);animation:pulse 1.8s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .nav-links{display:flex;gap:26px;font-size:13.5px;color:var(--muted);align-items:center;}
+  .nav-links a{text-decoration:none;transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{background:var(--green);color:#04231b!important;padding:8px 16px;border-radius:6px;font-weight:600;font-size:13px;}
+  @media (max-width:760px){.nav-links a:not(.nav-cta){display:none;}}
 
-  /* filter chips = section nav */
-  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
-  .chip{
-    background:var(--chip);border:none;border-radius:16px;
-    padding:7px 14px;font-size:13px;color:var(--ink);cursor:pointer;
-    transition:background .15s, color .15s;
-  }
-  .chip.active{background:var(--accent);color:#fff;}
-  .chip:hover:not(.active){background:#e2e4e6;}
+  /* HERO */
+  .hero{padding:64px 0 30px;position:relative;z-index:1;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+  @media (max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);background:rgba(34,211,166,.08);border:1px solid rgba(34,211,166,.25);padding:6px 13px;border-radius:6px;margin-bottom:26px;}
+  .kicker .d{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease infinite;}
+  .hero h1{font-size:clamp(34px,4.8vw,52px);font-weight:700;line-height:1.08;margin-bottom:20px;}
+  .hero h1 .hl{color:var(--blue);}
+  .hero p.lead{font-size:17px;color:var(--muted);max-width:460px;margin-bottom:32px;}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:14px;border-radius:8px;padding:13px 24px;cursor:pointer;border:none;text-decoration:none;display:inline-block;transition:transform .15s, box-shadow .15s;}
+  .btn-primary{background:var(--blue);color:#04101F;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(59,158,255,.3);}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-outline:hover{border-color:var(--muted);}
+  .hero-stats{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .stat{flex:1;padding:16px 18px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{font-family:'Space Grotesk',sans-serif;font-size:22px;display:block;font-weight:700;}
+  .stat span{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.03em;}
 
-  /* result card mimic */
-  .result{
-    margin-bottom:30px;padding-bottom:2px;
-    display:none;
-    animation:fadein .35s ease;
-  }
-  .result.show{display:block;}
-  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-  .breadcrumb{font-size:13px;color:var(--green);margin-bottom:2px;}
-  .res-title{color:var(--link);font-size:20px;line-height:1.3;margin:0 0 4px;cursor:pointer;text-decoration:none;display:inline-block;}
-  .res-title:hover{text-decoration:underline;}
-  .res-meta{font-size:13px;color:var(--muted);margin-bottom:8px;}
-  .res-snippet{font-size:14px;color:#4d5156;line-height:1.55;}
-  .res-snippet b{color:var(--ink);background:#fef7d1;padding:0 2px;}
+  /* dashboard card - signature */
+  .rank-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px 18px;position:relative;}
+  .rank-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+  .rank-head .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .live-tag{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--green);}
+  .live-tag .d{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 1.6s ease infinite;}
+  .rank-value{font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--muted);margin-bottom:14px;}
+  .rank-value b{font-size:36px;color:var(--green);font-weight:700;}
+  svg.rankline{width:100%;height:120px;display:block;}
+  .rank-foot{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#5A6472;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);}
 
-  .bullets{margin:10px 0 0 0;padding-left:18px;}
-  .bullets li{font-size:14px;color:#3c4043;margin-bottom:7px;line-height:1.5;}
-  .bullets b{color:var(--ink);}
+  /* SECTION HEAD */
+  .sec-head{margin-bottom:44px;max-width:600px;position:relative;z-index:1;}
+  .kicker2{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;display:block;}
+  .sec-head h2{font-size:clamp(26px,3.2vw,34px);font-weight:700;margin-bottom:10px;}
+  .sec-head p{color:var(--muted);font-size:15px;}
+  section .container{position:relative;z-index:1;}
 
-  /* keyword ranking widget */
-  .rank-card{
-    border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:14px;
-    background:#fafbfc;
-  }
-  .rank-card h4{margin:0 0 10px;font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
-  .rank-row{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:9px;}
-  .rank-kw{flex:1;color:var(--ink);}
-  .rank-badge{
-    font-weight:700;color:#fff;background:var(--green);
-    border-radius:5px;padding:2px 9px;min-width:34px;text-align:center;font-size:12.5px;
-  }
-  .rank-arrow{color:var(--green);font-size:12px;}
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:0;align-items:start;}
+  .about-text p{color:#C4CAD2;font-size:15.5px;margin-bottom:16px;}
+  .about-text b{color:var(--ink);}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .tag{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:12.5px;font-family:'JetBrains Mono',monospace;color:var(--muted);}
 
-  /* sitelinks style grid for competencies */
-  .sitelinks{
-    display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin-top:14px;
-  }
-  .sitelink a{color:var(--link);font-size:15px;text-decoration:none;}
-  .sitelink a:hover{text-decoration:underline;}
-  .sitelink p{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media (max-width:900px){.services-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.services-grid{grid-template-columns:1fr;}}
+  .svc-card{border-radius:14px;padding:26px 22px 22px;transition:transform .22s, box-shadow .22s;position:relative;overflow:hidden;color:#fff;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .svc-card:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 18px 36px rgba(0,0,0,.35);}
+  .svc-card::before{content:"";position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.12);transition:transform .3s;}
+  .svc-card:hover::before{transform:scale(1.35);}
+  .svc-card:nth-child(1){background:linear-gradient(150deg,#2557D6,#112a6b);}
+  .svc-card:nth-child(2){background:linear-gradient(150deg,#0EA968,#08532f);}
+  .svc-card:nth-child(3){background:linear-gradient(150deg,#F5B942,#a66c0e);}
+  .svc-card:nth-child(4){background:linear-gradient(150deg,#8B5CF6,#4a2b93);}
+  .svc-num{position:absolute;top:18px;right:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,.75);z-index:1;}
+  .svc-icon{width:34px;height:34px;margin-bottom:14px;position:relative;z-index:1;}
+  .svc-card h3{font-size:17px;margin-bottom:8px;font-weight:700;position:relative;z-index:1;}
+  .svc-card p{font-size:13.5px;color:rgba(255,255,255,.85);position:relative;z-index:1;}
 
-  /* contact - "ad" style card */
-  .contact-card{
-    border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:10px;
-    background:linear-gradient(180deg,#fff,#f8fafd);
-  }
-  .contact-card .ad-tag{
-    display:inline-block;border:1px solid var(--green);color:var(--green);
-    font-size:11px;font-weight:700;border-radius:3px;padding:0 5px;margin-bottom:8px;
-  }
-  .contact-row{display:flex;gap:10px;align-items:center;font-size:14px;margin-bottom:8px;color:#3c4043;}
-  .contact-row svg{color:var(--accent);flex-shrink:0;}
-  .contact-row a{color:var(--link);text-decoration:none;}
-  .contact-row a:hover{text-decoration:underline;}
-  .cta-row{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
-  .cta{
-    background:var(--accent);color:#fff;border:none;border-radius:20px;
-    padding:9px 18px;font-size:14px;cursor:pointer;font-weight:500;
-  }
-  .cta.secondary{background:#fff;color:var(--accent);border:1px solid var(--accent);}
-  .cta:hover{filter:brightness(1.06);}
+  /* TOOLS - real logos */
+  .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media (max-width:820px){.tools-grid{grid-template-columns:1fr 1fr;}}
+  .tool-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;align-items:center;gap:12px;transition:transform .15s, border-color .15s;}
+  .tool-card:hover{transform:translateY(-3px);border-color:#333d49;}
+  .tool-logo-wrap{width:40px;height:40px;border-radius:8px;background:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .tool-logo-wrap svg{width:22px;height:22px;}
+  .tool-name{font-size:13.5px;font-weight:600;}
+  .tool-cat{font-size:11px;color:var(--muted);}
 
-  .no-results{color:var(--muted);font-size:14px;padding:20px 0;display:none;}
-  .no-results.show{display:block;}
+  /* CASE STUDIES */
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:780px){.case-grid{grid-template-columns:1fr;}}
+  .case-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;}
+  .case-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px;}
+  .case-card h3{font-size:18px;margin-bottom:10px;font-weight:600;}
+  .case-card p{font-size:14px;color:#B7BFC8;margin-bottom:18px;}
+  .case-metrics{display:flex;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px;}
+  .case-metrics .m b{display:block;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--green);}
+  .case-metrics .m span{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
 
-  /* AI Overview */
-  .ai-overview{
-    border-radius:16px;padding:18px 20px 20px;margin-bottom:22px;
-    background:linear-gradient(135deg,#f3f8ff 0%,#f9f4ff 50%,#fff7f0 100%);
-    border:1px solid #e6e9f5;position:relative;overflow:hidden;
-    display:none;
+  /* TESTIMONIALS */
+  .rating-banner{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:26px;}
+  .rating-banner .big{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--amber);}
+  .rating-banner .stars{color:var(--amber);font-size:15px;}
+  .rating-banner .sub{font-size:12px;color:var(--muted);}
+  .test-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:780px){.test-grid{grid-template-columns:1fr;}}
+  .test-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;}
+  .test-top{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+  .test-avatar{width:36px;height:36px;border-radius:8px;background:#16324D;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;font-family:'Space Grotesk',sans-serif;flex-shrink:0;}
+  .test-name{font-size:13.5px;font-weight:600;}
+  .test-role{font-size:11.5px;color:var(--muted);}
+  .test-card p{font-size:13.5px;color:#B7BFC8;line-height:1.6;}
+
+  /* WHY CHOOSE */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media (max-width:780px){.why-grid{grid-template-columns:1fr 1fr;}}
+  /* PRICING */
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:820px){.pricing-grid{grid-template-columns:1fr;}}
+  .price-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 26px;display:flex;flex-direction:column;transition:transform .18s, border-color .18s;}
+  .price-card:hover{transform:translateY(-4px);border-color:var(--blue);}
+  .price-card.featured{border-color:var(--blue);background:linear-gradient(160deg,var(--panel),rgba(37,87,214,.08));position:relative;}
+  .price-badge{position:absolute;top:-11px;left:24px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:12px;font-family:'IBM Plex Mono',monospace;}
+  .price-card h3{font-size:17px;margin-bottom:6px;font-weight:700;}
+  .price-card .tagline{font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .price-list{list-style:none;margin-bottom:22px;flex:1;}
+  .price-list li{font-size:13.5px;color:#C9D2DC;padding:7px 0;padding-left:22px;position:relative;}
+  .price-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700;}
+  .price-cta{text-align:center;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:11px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--ink);transition:background .15s;}
+  .price-cta:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+  .why-stat{text-align:center;padding:26px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .why-stat b{font-family:'Space Grotesk',sans-serif;font-size:28px;display:block;font-weight:700;color:var(--blue);}
+  .why-stat span{font-size:11.5px;color:var(--muted);}
+
+  /* MINI AUDIT TOOL */
+  .audit-box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px;}
+  .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+  @media (max-width:700px){.audit-grid{grid-template-columns:1fr;}}
+  .audit-field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:'IBM Plex Mono',monospace;}
+  .audit-field input, .audit-field textarea{
+    width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:11px 13px;
+    color:var(--ink);font-family:'Inter',sans-serif;font-size:13.5px;resize:vertical;
   }
-  .ai-overview.show{display:block;animation:fadein .4s ease;}
+  .audit-field input:focus, .audit-field textarea:focus{outline:none;border-color:var(--blue);}
+  .audit-btn{
+    background:linear-gradient(90deg,#3B9EFF,#8B5CF6);color:#fff;border:none;border-radius:8px;
+    padding:13px 24px;font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;
+  }
+  .audit-btn:hover{filter:brightness(1.08);}
+  .audit-results{margin-top:22px;display:none;}
+  .audit-results.show{display:block;}
+  .audit-score-row{display:flex;align-items:center;gap:18px;margin-bottom:18px;}
+  .audit-score-circle{
+    width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;flex-shrink:0;border:4px solid;
+  }
+  .audit-check{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;margin-bottom:10px;padding:10px 12px;border-radius:8px;background:var(--panel2);}
+  .audit-check .icon{flex-shrink:0;font-size:15px;}
+  .audit-check .txt b{display:block;font-size:13.5px;}
+  .audit-check .txt span{font-size:12px;color:var(--muted);}
+
+  /* CONTACT */
+  .contact-band{
+    background:linear-gradient(135deg,#0d1b3d,#1a2557 45%,#3a1f5c);
+    border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:56px 50px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .contact-band::before{content:"";position:absolute;top:-100px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(59,158,255,.35),transparent 70%);animation:float 6s ease-in-out infinite;}
+  .contact-band::after{content:"";position:absolute;bottom:-120px;left:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.3),transparent 70%);animation:float 7s ease-in-out infinite reverse;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+  @media (max-width:780px){.contact-band{grid-template-columns:1fr;padding:40px 26px;}}
+  .contact-band h2{font-size:clamp(26px,3.4vw,34px);margin-bottom:14px;position:relative;z-index:1;background:linear-gradient(90deg,#fff,#9cc2ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .contact-band p{color:#B9C2D8;font-size:15px;margin-bottom:26px;max-width:400px;position:relative;z-index:1;}
+  .contact-links{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;}
+  .contact-link{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 17px;text-decoration:none;color:#fff;font-size:14.5px;transition:transform .18s, background .18s, border-color .18s;}
+  .contact-link:hover{transform:translateX(4px);background:rgba(255,255,255,.12);border-color:#3B9EFF;}
+  .contact-link .ic{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  footer{text-align:center;padding:30px 0;color:var(--muted);font-size:12px;border-top:1px solid var(--line);position:relative;z-index:1;}
+
+  /* ===== GOOGLE-STYLE TOP SECTION ===== */
+  .g-top{background:#fff;color:#202124;position:relative;z-index:1;}
+  .g-wrap{max-width:700px;margin:0 auto;padding:26px 20px 20px;}
+  .g-brand{display:flex;align-items:baseline;gap:2px;font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;margin-bottom:16px;}
+  .g-brand span:nth-child(1){color:#4285F4;} .g-brand span:nth-child(2){color:#EA4335;} .g-brand span:nth-child(3){color:#FBBC05;}
+  .g-brand span:nth-child(4){color:#4285F4;} .g-brand span:nth-child(5){color:#34A853;} .g-brand span:nth-child(6){color:#EA4335;}
+  .g-searchbox{display:flex;align-items:center;gap:10px;border:1px solid #dfe1e5;border-radius:24px;padding:11px 18px;box-shadow:0 1px 6px rgba(32,33,36,.15);margin-bottom:6px;}
+  .g-searchbox svg{flex-shrink:0;color:#5f6368;}
+  .g-input{border:none;outline:none;flex:1;font-size:15.5px;color:#202124;font-family:'Inter',sans-serif;background:transparent;}
+  .g-stats{color:#5f6368;font-size:12.5px;margin:8px 2px 20px;}
+  .g-stats b{color:#202124;}
+
+  .ai-overview{border-radius:16px;padding:18px 20px 20px;margin-bottom:20px;background:linear-gradient(135deg,#f3f8ff 0%,#f9f4ff 50%,#fff7f0 100%);border:1px solid #e6e9f5;position:relative;overflow:hidden;}
   .ai-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-  .ai-spark{
-    width:20px;height:20px;flex-shrink:0;
-    background:conic-gradient(from 0deg,#4285F4,#EA4335,#FBBC05,#34A853,#4285F4);
-    border-radius:50% 50% 50% 0;
-    animation:spin 2.2s linear infinite;
-  }
+  .ai-spark{width:20px;height:20px;flex-shrink:0;background:conic-gradient(from 0deg,#4285F4,#EA4335,#FBBC05,#34A853,#4285F4);border-radius:50% 50% 50% 0;animation:spin 2.2s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
-  .ai-label{
-    font-size:13px;font-weight:700;
-    background:linear-gradient(90deg,#4285F4,#9c27b0,#EA4335);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    letter-spacing:.02em;
-  }
-  .ai-body{font-size:14.5px;line-height:1.65;color:#3c4043;}
-  .ai-body b{color:var(--ink);}
-  .ai-body .typed-cursor{display:inline-block;width:2px;background:var(--ink);margin-left:1px;animation:blink 1s step-end infinite;}
-  @keyframes blink{50%{opacity:0;}}
-  .ai-sources{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-  .ai-source{
-    font-size:12px;background:#fff;border:1px solid #e2e5ea;border-radius:14px;
-    padding:5px 11px;color:var(--muted);
-  }
-  .ai-source b{color:var(--ink);}
-  .ai-disclaimer{font-size:11px;color:#9aa0a6;margin-top:12px;}
+  .ai-label{font-size:13px;font-weight:700;background:linear-gradient(90deg,#4285F4,#9c27b0,#EA4335);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .ai-body{font-size:14px;line-height:1.6;color:#3c4043;}
+  .ai-body b{color:#202124;}
+  .ai-sources{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .ai-source{font-size:11.5px;background:#fff;border:1px solid #e2e5ea;border-radius:14px;padding:5px 11px;color:#5f6368;}
+  .ai-source b{color:#202124;}
 
-  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;}
-
-  ::selection{background:#c9e0ff;}
+  .g-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+  .g-chip{background:#f1f3f4;border:none;border-radius:16px;padding:8px 16px;font-size:13px;color:#202124;cursor:pointer;text-decoration:none;font-family:'Inter',sans-serif;font-weight:500;transition:background .15s;}
+  .g-chip:hover{background:#e2e4e6;}
+  .g-chip.primary{background:#202124;color:#fff;}
+  .g-chip.primary:hover{background:#000;}
+  .scroll-cue{text-align:center;padding:10px 0 24px;font-size:12px;color:#9aa0a6;font-family:'IBM Plex Mono',monospace;}
+  .scroll-cue span{display:inline-block;animation:bounce 1.6s ease infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="brand"><span>A</span><span>h</span><span>s</span><span>a</span><span>n</span><span>.</span></div>
-
-  <div class="searchbox">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="searchInput" type="text" placeholder="Search Ahsan's experience, skills, contact…" autocomplete="off">
-  </div>
-  <div class="stats">About <b id="resultCount">3</b> results (<span id="loadTime">0.31</span> seconds) — hire an <b>SEO Specialist</b> who gets results.</div>
-
-  <div class="ai-overview" id="aiOverview">
-    <div class="ai-head">
-      <div class="ai-spark"></div>
-      <span class="ai-label">AI Overview</span>
+<div class="g-top">
+  <div class="g-wrap">
+    <div class="g-brand"><span>A</span><span>h</span><span>s</span><span>a</span><span>n</span><span> </span><span style="color:#5f6368;font-weight:500;font-size:0.55em;vertical-align:middle;">SEO Specialist</span></div>
+    <div class="g-searchbox">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="g-input" type="text" placeholder="Search: SEO specialist Karachi, Shopify SEO, technical SEO…" readonly>
     </div>
-    <div class="ai-body" id="aiBody"></div>
-    <div class="ai-sources">
-      <span class="ai-source">Finix Solution — <b>SEO Manager</b></span>
-      <span class="ai-source">Lime Software Logics — <b>SEO Executive</b></span>
-      <span class="ai-source">Iqra University — <b>MBA</b></span>
-      <span class="ai-source">Google Digital Garage — <b>14 certs</b></span>
+    <div class="g-stats">About <b>2,900,000</b> results — showing the one you're looking for.</div>
+
+    <div class="ai-overview">
+      <div class="ai-head"><div class="ai-spark"></div><span class="ai-label">AI Overview</span></div>
+      <div class="ai-body">Muhammad Ahsan Ul Haq is an <b>SEO Specialist</b> based in Karachi with <b>2.5+ years of experience</b> managing organic growth for <b>50+ clients</b>. As SEO Manager at Finix Solution, he ranked a Shopify store <b>#3 organically</b> and recovered a penalized WordPress site to <b>page 3–4</b>, while building <b>450 backlinks in 6 months</b>. He holds a <b>5.0 rating</b> across LinkedIn recommendations and is currently pursuing an MBA at Iqra University.</div>
+      <div class="ai-sources">
+        <span class="ai-source">Finix Solution — <b>SEO Manager</b></span>
+        <span class="ai-source">Lime Software Logics — <b>SEO Executive</b></span>
+        <span class="ai-source">Search Console — <b>36.9K impressions</b></span>
+      </div>
     </div>
-    <div class="ai-disclaimer">AI Overview can make mistakes, but this one's built entirely from a verified track record. Generative AI is experimental.</div>
-  </div>
 
-  <div class="chips" id="chips">
-    <button class="chip active" data-filter="all">All</button>
-    <button class="chip" data-filter="experience">Experience</button>
-    <button class="chip" data-filter="skills">Skills</button>
-    <button class="chip" data-filter="certs">Certifications</button>
-    <button class="chip" data-filter="contact">Contact</button>
+    <div class="g-chips">
+      <a href="javascript:void(0)" onclick="jumpTo('portfolio')" class="g-chip primary">↓ View full portfolio</a>
+      <a href="javascript:void(0)" onclick="jumpTo('work')" class="g-chip">Case studies</a>
+      <a href="javascript:void(0)" onclick="jumpTo('pricing')" class="g-chip">Packages</a>
+      <a href="javascript:void(0)" onclick="jumpTo('reviews')" class="g-chip">Reviews</a>
+      <a href="javascript:void(0)" onclick="jumpTo('contact')" class="g-chip">Contact</a>
+    </div>
   </div>
+  <div class="scroll-cue"><span>↓</span> jumping to the full portfolio in a moment…</div>
+</div>
 
-  <!-- Experience: Finix -->
-  <div class="result" data-cat="experience" data-kw="finix seo manager shopify wordpress backlinks google business profile chatbot llms.txt technical on-page schema">
-    <div class="breadcrumb">finixsolution.com › careers › seo-manager</div>
-    <a class="res-title">SEO Manager — Finix Solution</a>
-    <div class="res-meta">Feb 2026 – Present · Karachi, Pakistan</div>
-    <div class="res-snippet">Owns SEO for a <b>Shopify</b> store and a <b>WordPress</b> site, recovering the latter from a legacy spam penalty tied to toxic backlinks.</div>
-    <ul class="bullets">
-      <li>Ranked a <b>Shopify</b> e-commerce site <b>#3 organically</b> (Pakistan) and moved a U.S. WordPress site from unranked to page 3–4, overcoming a spam penalty from <b>1,800+ toxic backlinks</b>.</li>
-      <li>Generated <b>50+ qualified leads</b> directly attributed to organic search — ROI beyond vanity rankings.</li>
-      <li>Built <b>450 backlinks in 6 months</b> with ongoing citation building and link-quality audits.</li>
-      <li>Scaled <b>Google Business Profile</b> performance (posts, images, listings, reviews) driving month-over-month growth.</li>
-      <li>Optimized technical & on-page SEO across <b>20+ pages</b> — keyword mapping, schema markup, site speed, security.</li>
-      <li>Implemented an <b>AI chatbot</b> and added an <b>llms.txt</b> file to prep the site for AI-driven search visibility.</li>
-    </ul>
+<div id="portfolio">
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="d"></span> ahsan<span class="mono" style="color:var(--muted);">.seo</span></div>
+    <div class="nav-links">
+      <a href="javascript:void(0)" onclick="jumpTo('about')">About</a>
+      <a href="javascript:void(0)" onclick="jumpTo('services')">Services</a>
+      <a href="javascript:void(0)" onclick="jumpTo('work')">Work</a>
+      <a href="javascript:void(0)" onclick="jumpTo('audit-tool')">Free Tool</a>
+      <a href="javascript:void(0)" onclick="jumpTo('pricing')">Packages</a>
+      <a href="javascript:void(0)" onclick="jumpTo('reviews')">Reviews</a>
+      <a href="javascript:void(0)" onclick="jumpTo('contact')" class="nav-cta">Get a free audit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container hero">
+  <div class="hero-grid">
+    <div>
+      <span class="kicker"><span class="d"></span> status: taking on new SEO clients</span>
+      <h1>I move websites from <span class="hl">page 10</span> to <span class="hl">page 1</span>.</h1>
+      <p class="lead">SEO Specialist with 2.5+ years turning organic search into a real growth channel — for 50+ clients across e-commerce, local business, and beyond.</p>
+      <div class="hero-ctas">
+        <a href="javascript:void(0)" onclick="jumpTo('contact')" class="btn btn-primary">Get a free SEO audit</a>
+        <a href="javascript:void(0)" onclick="jumpTo('work')" class="btn btn-outline">See the results</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>2.5+</b><span>YRS EXP</span></div>
+        <div class="stat"><b>50+</b><span>CLIENTS</span></div>
+        <div class="stat"><b>450+</b><span>LINKS/6MO</span></div>
+        <div class="stat"><b>5.0</b><span>RATING</span></div>
+      </div>
+    </div>
+
     <div class="rank-card">
-      <h4>Keyword performance snapshot</h4>
-      <div class="rank-row"><span class="rank-kw">shopify store — Pakistan</span><span class="rank-arrow">▲</span><span class="rank-badge">#3</span></div>
-      <div class="rank-row"><span class="rank-kw">wordpress site — U.S.</span><span class="rank-arrow">▲</span><span class="rank-badge">Pg 3–4</span></div>
-      <div class="rank-row"><span class="rank-kw">backlinks built (6 mo)</span><span class="rank-arrow">▲</span><span class="rank-badge">450</span></div>
+      <div class="rank-head">
+        <span class="lbl">// keyword_rank_tracker.log</span>
+        <span class="live-tag"><span class="d"></span>LIVE</span>
+      </div>
+      <div class="rank-value">avg_position: <b id="rankNum">22</b></div>
+      <svg class="rankline" viewBox="0 0 320 110" preserveAspectRatio="none">
+        <polyline id="rankLine" points="0,90 45,88 90,70 135,74 180,45 225,38 270,18 320,10" fill="none" stroke="#22D3A6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="320" cy="10" r="4" fill="#22D3A6"/>
+      </svg>
+      <div class="rank-foot"><span>2026-02-01</span><span>2026-07-31</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="audit-tool" class="container">
+  <div class="sec-head">
+    <span class="kicker2">// try it free</span>
+    <h2>Mini SEO Audit</h2>
+    <p>Paste in your page title, meta description, and target keyword — get instant feedback on the basics. (For a full technical + backlink audit, use the "Get started" button below.)</p>
+  </div>
+  <div class="audit-box">
+    <div class="audit-grid">
+      <div class="audit-field">
+        <label>PAGE TITLE</label>
+        <input type="text" id="auditTitle" placeholder="e.g. Best Running Shoes for Marathon Training | BrandName">
+      </div>
+      <div class="audit-field">
+        <label>TARGET KEYWORD</label>
+        <input type="text" id="auditKeyword" placeholder="e.g. running shoes for marathon">
+      </div>
+    </div>
+    <div class="audit-field" style="margin-bottom:16px;">
+      <label>META DESCRIPTION</label>
+      <textarea id="auditMeta" rows="2" placeholder="e.g. Shop the best running shoes for marathon training. Lightweight, durable, and built for long-distance comfort. Free shipping on all orders."></textarea>
+    </div>
+    <button class="audit-btn" onclick="runAudit()">Run Free Audit →</button>
+
+    <div class="audit-results" id="auditResults">
+      <div class="audit-score-row">
+        <div class="audit-score-circle" id="auditScoreCircle">–</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;" id="auditScoreLabel">SEO Basics Score</div>
+          <div style="font-size:12.5px;color:var(--muted);">Based on title, meta, and keyword usage</div>
+        </div>
+      </div>
+      <div id="auditChecks"></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="container">
+  <div class="sec-head">
+    <span class="kicker2">// packages</span>
+    <h2>How we'd work together</h2>
+    <p>Simple, flat-fee packages — pick what fits, or we scope something custom.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Starter Audit</h3>
+      <div class="tagline">For businesses who need to know what's wrong first.</div>
+      <ul class="price-list">
+        <li>Full technical + on-page SEO audit</li>
+        <li>Keyword & competitor snapshot</li>
+        <li>Prioritized action-plan report</li>
+      </ul>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=Starter%20Audit%20Inquiry" target="_blank" rel="noopener" class="price-cta">Get started</a>
+    </div>
+    <div class="price-card featured">
+      <span class="price-badge">MOST POPULAR</span>
+      <h3>Growth Retainer</h3>
+      <div class="tagline">Ongoing SEO management — the most common setup.</div>
+      <ul class="price-list">
+        <li>Everything in Starter Audit</li>
+        <li>On-page + technical fixes, monthly</li>
+        <li>Link building & content optimization</li>
+        <li>Google Business Profile management</li>
+        <li>Monthly performance reporting</li>
+      </ul>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=Growth%20Retainer%20Inquiry" target="_blank" rel="noopener" class="price-cta">Get started</a>
+    </div>
+    <div class="price-card">
+      <h3>Full E-commerce SEO</h3>
+      <div class="tagline">For Shopify/WordPress stores that need it all.</div>
+      <ul class="price-list">
+        <li>Everything in Growth Retainer</li>
+        <li>Product & category page optimization</li>
+        <li>Penalty recovery (if applicable)</li>
+        <li>AEO/GEO readiness (AI search)</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=E-commerce%20SEO%20Inquiry" target="_blank" rel="noopener" class="price-cta">Get started</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="container">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="kicker2">// about</span>
+      <h2 style="font-size:26px;margin-bottom:16px;font-weight:700;">Results-driven, not vanity-metric-driven.</h2>
+      <p>I'm Muhammad Ahsan Ul Haq, an SEO Specialist based in Karachi, currently working as SEO Manager at Finix Solution. Over the last 2.5+ years I've led end-to-end SEO — technical, on-page, off-page, and local — for more than 50 clients across e-commerce and service industries.</p>
+      <p>My focus isn't just rankings — it's leads, revenue, and traffic that actually converts. I've recovered penalized sites, scaled Google Business Profiles, and started applying AEO/GEO strategies to prepare client sites for AI-driven search.</p>
+      <p>Currently pursuing an MBA at Iqra University, alongside 14 completed certifications from Google Digital Garage.</p>
+      <div class="tag-row">
+        <span class="tag">on_page_seo</span>
+        <span class="tag">technical_seo</span>
+        <span class="tag">off_page_seo</span>
+        <span class="tag">local_seo</span>
+        <span class="tag">aeo_geo</span>
+        <span class="tag">ga4_search_console</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="container">
+  <div class="sec-head">
+    <span class="kicker2">// services</span>
+    <h2>Where I move the needle</h2>
+    <p>Four core disciplines, applied together so rankings turn into real traffic and leads.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card"><span class="svc-num">01</span><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="7" y1="16" x2="11" y2="16"/></svg><h3>On-Page SEO</h3><p>Keyword mapping, meta titles/descriptions, schema markup, and content optimization built around real search intent.</p></div>
+    <div class="svc-card"><span class="svc-num">02</span><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg><h3>Technical SEO</h3><p>Site speed, crawlability, security hardening, and structured data — the foundation Google needs to trust a site.</p></div>
+    <div class="svc-card"><span class="svc-num">03</span><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><line x1="10.5" y1="10" x2="13.5" y2="14"/></svg><h3>Off-Page SEO</h3><p>High-quality backlinks through guest posts, citations, and outreach — 450–580+ links per month, built to last.</p></div>
+    <div class="svc-card"><span class="svc-num">04</span><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 8 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8z"/><circle cx="12" cy="10" r="2.5"/></svg><h3>Local SEO & GBP</h3><p>Google Business Profile optimization, review management, and local pack visibility for nearby search.</p></div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <span class="kicker2" style="margin-bottom:14px;display:block;">// stack</span>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><path fill="#1B1B2F" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 21.8c-5.4 0-9.8-4.4-9.8-9.8S6.6 2.2 12 2.2s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8z"/><path fill="#1B1B2F" d="M12 5.5v6.9l5.8 3.4-1 1.7-6.9-4V5.5z"/></svg></div>
+        <div><div class="tool-name">Moz</div><div class="tool-cat">Domain authority</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#FF642D"/><path fill="#fff" d="M9 20V12h2.2v6.7h4.2V20H9zm7.8 0V12h2.2v3.2h3.4V12H24v8h-2.2v-3.4h-3.4V20h-1.6z"/></svg></div>
+        <div><div class="tool-name">SEMrush</div><div class="tool-cat">Keyword research</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="13" width="4.5" height="8" rx="1" fill="#F9AB00"/><rect x="9.75" y="7" width="4.5" height="14" rx="1" fill="#E37400"/><rect x="16.5" y="3" width="4.5" height="18" rx="1" fill="#F9AB00"/><circle cx="19" cy="4.5" r="1.6" fill="#E37400"/></svg></div>
+        <div><div class="tool-name">Google Analytics</div><div class="tool-cat">Traffic tracking</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" fill="#458CF5"/><path fill="#fff" d="M7 15l3-6 2.5 4L15 8l2 7H7z"/></svg></div>
+        <div><div class="tool-name">Search Console</div><div class="tool-cat">Rankings & indexing</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M12 2C7.6 2 4 5.6 4 10c0 5.4 8 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8z"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg></div>
+        <div><div class="tool-name">Business Profile</div><div class="tool-cat">Local pack rankings</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="#21759B"/><path fill="#fff" d="M3.6 12a8.4 8.4 0 0 0 4.7 7.5L4.6 9.3c-.6 1-1 2.1-1 3.4-.1.1-.1.2 0 .3zm14.9-.5c0-1-.4-1.7-.7-2.3-.4-.7-.8-1.2-.8-1.9 0-.7.6-1.4 1.4-1.4h.1a8.4 8.4 0 0 0-12.7 1.6h.5c.8 0 2 0 2 0 .4 0 .5.6.1.6 0 0-.4 0-.9.1L11 15.5l1.9-5.6c-.4 0-.7-.1-.7-.1-.4 0-.3-.6.1-.6 0 0 1.2.1 2 .1.7 0 2 0 2 0 .4-.1.4.5.1.6 0 0-.4 0-.8.1l3.4 10c1-1.1 1.7-2.6 1.7-4.5h-.2zM12.2 12.9l-2.8 8.2c.8.2 1.7.4 2.6.4 1.1 0 2.1-.2 3-.5v-.1l-2.8-7.9v-.1zm8-5.3c0 1-.2 2.2-.7 3.5l-2.9 8.5a8.4 8.4 0 0 0 3.6-11.2c.1 0 0-.1 0 .2zM12 2.3A9.7 9.7 0 1 0 21.7 12 9.7 9.7 0 0 0 12 2.3zm0 19a9.3 9.3 0 1 1 9.3-9.3A9.3 9.3 0 0 1 12 21.3z"/></svg></div>
+        <div><div class="tool-name">WordPress</div><div class="tool-cat">CMS & on-page fixes</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><path fill="#95BF47" d="M17.7 4.3c0-.1-.1-.2-.3-.2l-1.7-.1s-1.3-1.3-1.5-1.4c-.1-.1-.4-.1-.5 0l-.7.2c-.2-.6-.5-1.1-.9-1.4-.7-.6-1.6-.4-2.1-.2-.1-.4-.4-.7-.6-.9-1-1-2.5-.4-3.1 1.6-.4 1.4-.9 3.1-.9 3.1l-1.6.5c-.5.2-.5.2-.6.6L2 19.3l14.8 2.5 5.2-1.3S17.7 4.4 17.7 4.3zm-4.9-1.9c-.4.1-.8.3-1.3.4v-.3c0-.6-.1-1.2-.2-1.6.7-.1 1.2.4 1.5 1.5zm-2.2-1.2c.2.4.3 1 .3 1.8v.1c-.8.3-1.6.5-2.5.8.5-1.8 1.4-2.6 2.2-2.7zm-1-1c.2 0 .4.1.5.2-.9.4-1.9 1.6-2.3 4l-2 .6c.5-1.8 1.9-4.7 3.8-4.8z"/><path fill="#5E8E3E" d="M17.4 4.1l-1.7-.1s-1.3-1.3-1.5-1.4c-.1-.1-.1-.1-.2-.1L14 22.6l5.2-1.3s-1.6-16.9-1.6-17c0-.1-.1-.2-.2-.2z"/><path fill="#fff" d="M11.7 8.6l-.6 2.2s-.7-.3-1.5-.3c-1.2 0-1.3.8-1.3.9 0 .7.9 1 1.7 1.4 1.2.6 1.7 1.4 1.7 2.4 0 1.9-1.2 3.1-2.8 3.1-1.9 0-2.9-1.2-2.9-1.2l.4-1.4s1 .9 1.9.9c.6 0 .8-.5.8-.8 0-.5-.4-.9-1.2-1.3-1.1-.6-1.9-1.3-1.9-2.5 0-1.4 1-2.9 3.1-2.9.9 0 1.6.3 1.6.3z"/></svg></div>
+        <div><div class="tool-name">Shopify</div><div class="tool-cat">E-commerce SEO</div></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-logo-wrap"><svg viewBox="0 0 24 24"><path fill="#00C4CC" d="M4.5 2h15A2.5 2.5 0 0 1 22 4.5v15a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 19.5v-15A2.5 2.5 0 0 1 4.5 2z"/><path fill="#fff" d="M17.5 8.2c-.2 0-.4.1-.5.3l-1.5 3-1-2.3c-.1-.2-.3-.4-.6-.4s-.5.1-.6.4L12 12l-1-2.6c-.1-.2-.3-.3-.6-.3-.1 0-.2 0-.3.1L6.7 12c-.3.2-.4.5-.2.8.1.2.3.3.5.3.1 0 .2 0 .3-.1l2.6-1.7 1.2 3c.1.2.3.4.6.4s.5-.1.6-.4l1.2-3 1 2.3c.1.2.3.4.6.4s.5-.1.6-.4l1.9-3.9c.2-.3.1-.7-.2-.8-.1-.1-.2-.1-.3-.1z"/></svg></div>
+        <div><div class="tool-name">Canva</div><div class="tool-cat">GBP & content visuals</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="container">
+  <div class="sec-head">
+    <span class="kicker2">// case studies</span>
+    <h2>Real work, real numbers</h2>
+    <p>No vanity metrics — every figure below is pulled from actual client accounts.</p>
+  </div>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-tag">Finix Solution · Feb 2026 – Present</div>
+      <h3>Shopify + WordPress recovery & growth</h3>
+      <p>Ranked a Shopify store #3 organically in the Pakistan market, and recovered a U.S. WordPress site from unranked — hit by a legacy spam penalty from 1,800+ toxic backlinks — up to page 3–4.</p>
+      <div class="case-metrics">
+        <div class="m"><b>#3</b><span>Shopify rank (PK)</span></div>
+        <div class="m"><b>450</b><span>Backlinks / 6mo</span></div>
+        <div class="m"><b>50+</b><span>Qualified leads</span></div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Lime Software Logics · Jan 2024 – Jan 2026</div>
+      <h3>Scaled SEO across 47+ client accounts</h3>
+      <p>Owned on-page and off-page strategy at scale — keyword research, ranking analysis, and large outreach campaigns — while layering in Local SEO, AEO, and GEO for evolving search platforms.</p>
+      <div class="case-metrics">
+        <div class="m"><b>47+</b><span>Clients managed</span></div>
+        <div class="m"><b>580+</b><span>Backlinks / month</span></div>
+        <div class="m"><b>40+</b><span>Off-page campaigns</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- Experience: Lime -->
-  <div class="result" data-cat="experience" data-kw="lime software logics seo executive keyword research moz semrush brightlocal local seo aeo geo reporting kpi">
-    <div class="breadcrumb">limesoftwarelogics.com › team › seo-executive</div>
-    <a class="res-title">SEO Executive — Lime Software Logics (SMC-Pvt) Ltd.</a>
-    <div class="res-meta">Jan 2024 – Jan 2026 · Karachi, Pakistan</div>
-    <div class="res-snippet">Led end-to-end SEO strategy for <b>47+ clients</b>, closing visibility gaps with structured, data-driven roadmaps.</div>
-    <ul class="bullets">
-      <li>Owned advanced on-page SEO — keyword research, ranking analysis, meta/title optimization using <b>Moz, SEMrush, SEOptimer, BrightLocal</b>.</li>
-      <li>Ran large-scale off-page campaigns for <b>40+ clients</b>, generating <b>580+ backlinks/month</b> via guest posts, citations, press releases.</li>
-      <li>Implemented <b>Local SEO, AEO, and GEO</b> strategies for evolving search & answer-based platforms.</li>
-      <li>Monitored KPIs and translated analytics into actionable reporting for client alignment.</li>
-    </ul>
-  </div>
-
-  <!-- Skills -->
-  <div class="result" data-cat="skills" data-kw="skills key competencies strategy planning keyword mapping content optimization link building project management ga4 search console kpi roi">
-    <div class="breadcrumb">ahsan.dev › skills</div>
-    <a class="res-title">Key Competencies</a>
-    <div class="res-meta">Tools: Moz · SEMrush · BrightLocal · SEOptimer · GA4 · Search Console</div>
-    <div class="sitelinks">
-      <div class="sitelink"><a>SEO Strategy Development</a><p>Roadmaps tied to business goals</p></div>
-      <div class="sitelink"><a>Keyword Research & Mapping</a><p>Intent-first, SERP-aware</p></div>
-      <div class="sitelink"><a>Link-Building Strategy</a><p>Guest posts, citations, outreach</p></div>
-      <div class="sitelink"><a>Google Business Profile</a><p>Posts, listings, reviews</p></div>
-      <div class="sitelink"><a>Content Optimization & Pruning</a><p>On-page & topical relevance</p></div>
-      <div class="sitelink"><a>KPI & ROI Analysis</a><p>GA4 + Search Console reporting</p></div>
-      <div class="sitelink"><a>Cross-Functional Collaboration</a><p>Dev, content & client teams</p></div>
-      <div class="sitelink"><a>Project Management</a><p>Multi-client delivery at scale</p></div>
+  <div style="margin-top:16px;" class="case-card">
+    <div class="case-tag">Google Search Console & Business Profile · Live data</div>
+    <h3>What it looks like in Google's own dashboards</h3>
+    <div class="case-metrics" style="margin-top:14px;">
+      <div class="m"><b>36.9K</b><span>Search impressions (6mo)</span></div>
+      <div class="m"><b>1.4K</b><span>Clicks from search</span></div>
+      <div class="m"><b>12.6%</b><span>Peak click-through rate</span></div>
+      <div class="m"><b>2,775</b><span>Business profile views</span></div>
     </div>
   </div>
+</section>
 
-  <!-- Education -->
-  <div class="result" data-cat="experience" data-kw="education iqra university mba bachelor business administration 2025">
-    <div class="breadcrumb">iqra.edu.pk › alumni</div>
-    <a class="res-title">Education — Iqra University</a>
-    <div class="res-snippet">Master of Business Administration (MBA) — In Progress. Bachelor of Business Administration (Honours) — Graduated 2025.</div>
+<section id="reviews" class="container">
+  <div class="sec-head">
+    <span class="kicker2">// recommendations</span>
+    <h2>What colleagues & managers say</h2>
+    <p>Pulled directly from LinkedIn.</p>
   </div>
-
-  <!-- Certifications -->
-  <div class="result" data-cat="certs" data-kw="certifications google digital garage fundamentals of digital marketing online business security code online advertising customer needs mobile networking">
-    <div class="breadcrumb">learndigital.withgoogle.com › digital-garage</div>
-    <a class="res-title">Certifications — Google Digital Garage</a>
-    <div class="res-snippet">14 completed courses in Digital Marketing, including <b>Fundamentals of Digital Marketing</b> (Award Score: 100).</div>
-    <ul class="bullets">
-      <li>Fundamentals of Digital Marketing — Score 100 (ID: 179082332)</li>
-      <li>Improve Your Online Business Security · Understand the Basics of Code</li>
-      <li>Get a Business Online · Promote a Business with Content & Online Advertising</li>
-      <li>Understand Customers' Needs & Online Behaviors · Connect with Customers Over Mobile</li>
-      <li>Expand a Business to Other Countries · Business Communication · Effective Networking</li>
-    </ul>
+  <div class="rating-banner">
+    <div class="big">5.0</div>
+    <div><div class="stars">★★★★★</div><div class="sub">Based on recommendations from LinkedIn colleagues & managers</div></div>
   </div>
-
-  <!-- Contact -->
-  <div class="result" data-cat="contact" data-kw="contact email phone karachi hire seo specialist">
-    <div class="contact-card">
-      <span class="ad-tag">Available for hire</span>
-      <div class="contact-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-        <a href="mailto:Aulhaq65@gmail.com">Aulhaq65@gmail.com</a>
-      </div>
-      <div class="contact-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.13.94.36 1.86.68 2.75a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.33-1.33a2 2 0 0 1 2.11-.45c.9.32 1.81.55 2.75.68A2 2 0 0 1 22 16.92z"/></svg>
-        <a href="tel:+923332293391">+92 333 2293391</a>
-      </div>
-      <div class="contact-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Karachi, Pakistan
-      </div>
-      <div class="cta-row">
-        <button class="cta" onclick="window.location.href='mailto:Aulhaq65@gmail.com?subject=SEO%20Opportunity'">Email me</button>
-        <button class="cta secondary" onclick="window.location.href='tel:+923332293391'">Call me</button>
-      </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-top"><div class="test-avatar">MB</div><div><div class="test-name">Mirza Taimoor Baig</div><div class="test-role">Talent Acquisition Lead</div></div></div>
+      <p>"I had the pleasure of hiring Ahsan at Lime Software Logics as an SEO Intern, and watching his growth has been truly impressive. He is highly punctual, reliable, and technically sound."</p>
+    </div>
+    <div class="test-card">
+      <div class="test-top"><div class="test-avatar">MR</div><div><div class="test-name">Mehdi Rafiq</div><div class="test-role">SEO Specialist, E-Commerce SEO</div></div></div>
+      <p>"Ahsan is a remarkable professional with a deep understanding of his field. His problem-solving abilities and proactive approach consistently lead to innovative solutions."</p>
+    </div>
+    <div class="test-card">
+      <div class="test-top"><div class="test-avatar">MD</div><div><div class="test-name">Muhammad Daniyal</div><div class="test-role">Digital Marketer (managed Ahsan directly)</div></div></div>
+      <p>"Ahsan is a detail-oriented professional who consistently delivers high-quality results. His ability to handle complex tasks and meet tight deadlines is truly remarkable."</p>
+    </div>
+    <div class="test-card">
+      <div class="test-top"><div class="test-avatar">AQ</div><div><div class="test-name">Asmar Ahmed Qureshi</div><div class="test-role">Senior Manager, Web Dev & Digital Marketing</div></div></div>
+      <p>"Ahsan was a valuable member of our team. He is a good communicator and is teachable. I think he has a bright future ahead of him."</p>
     </div>
   </div>
+</section>
 
-  <div class="no-results" id="noResults">No results found for your search. Try “SEO”, “backlinks”, or “contact”.</div>
+<section class="container">
+  <div class="sec-head">
+    <span class="kicker2">// why work with me</span>
+    <h2>Built for accountability</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-stat"><b>2.5+</b><span>Years of experience</span></div>
+    <div class="why-stat"><b>100+</b><span>Total clients served</span></div>
+    <div class="why-stat"><b>5.0</b><span>Recommendation rating</span></div>
+    <div class="why-stat"><b>14</b><span>Google certifications</span></div>
+  </div>
+</section>
 
-  <footer>Search results generated for demonstration purposes — every metric above is real. Query anything, Ahsan indexes it.</footer>
+<section id="contact" class="container">
+  <div class="contact-band">
+    <div style="position:relative;z-index:1;">
+      <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7fd9a8;background:rgba(14,169,104,.15);padding:5px 13px;border-radius:16px;margin-bottom:18px;"><span style="width:6px;height:6px;background:#0EA968;border-radius:50%;animation:pulse 1.6s ease infinite;"></span>Taking on new clients</span>
+      <h2>Let's grow your business.</h2>
+      <p>Send me your website and I'll send back a free audit — what's holding your rankings back, and exactly what I'd fix first. No obligation.</p>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=Free%20SEO%20Audit%20Request" target="_blank" rel="noopener" class="btn btn-primary" style="background:linear-gradient(90deg,#3B9EFF,#8B5CF6);box-shadow:0 8px 24px rgba(59,158,255,.35);">Get my free audit →</a>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=Free%20SEO%20Audit%20Request" target="_blank" rel="noopener">
+        <span class="ic">✉️</span>
+        <span><span style="display:block;font-weight:600;">Email me</span><span style="font-size:12px;color:#B9C2D8;">Opens Gmail — Aulhaq65@gmail.com</span></span>
+      </a>
+      <a class="contact-link" href="https://wa.me/923332293391" target="_blank" rel="noopener">
+        <span class="ic">💬</span>
+        <span><span style="display:block;font-weight:600;">Chat on WhatsApp</span><span style="font-size:12px;color:#B9C2D8;">+92 333 2293391</span></span>
+      </a>
+      <div class="contact-link" style="cursor:default;"><span class="ic">📍</span> Karachi, Pakistan</div>
+    </div>
+  </div>
+</section>
+
+<footer>Muhammad Ahsan Ul Haq · SEO Specialist · Built with real client data, no vanity metrics.</footer>
 </div>
 
 <script>
-const input = document.getElementById('searchInput');
-const chips = document.querySelectorAll('.chip');
-const results = document.querySelectorAll('.result');
-const resultCount = document.getElementById('resultCount');
-const loadTime = document.getElementById('loadTime');
-const noResults = document.getElementById('noResults');
-let activeFilter = 'all';
-
-function applyFilters(){
-  const q = input.value.trim().toLowerCase();
-  let visible = 0;
-  results.forEach(r=>{
-    const cat = r.dataset.cat;
-    const kw = (r.dataset.kw||'') + ' ' + r.innerText.toLowerCase();
-    const matchesFilter = activeFilter === 'all' || cat === activeFilter;
-    const matchesQuery = q === '' || kw.includes(q);
-    if(matchesFilter && matchesQuery){
-      r.classList.add('show');
-      visible++;
-    } else {
-      r.classList.remove('show');
-    }
-  });
-  resultCount.textContent = visible;
-  loadTime.textContent = (0.18 + Math.random()*0.3).toFixed(2);
-  noResults.classList.toggle('show', visible === 0);
+function jumpTo(id){
+  const el = document.getElementById(id);
+  if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
 }
 
-input.addEventListener('input', applyFilters);
-
-chips.forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    chips.forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    activeFilter = chip.dataset.filter;
-    applyFilters();
-  });
+// Auto-advance from the Google intro to the portfolio after 3s, unless the user interacts first
+let autoAdvanceCancelled = false;
+function cancelAutoAdvance(){ autoAdvanceCancelled = true; }
+window.addEventListener('scroll', cancelAutoAdvance, {once:true});
+window.addEventListener('wheel', cancelAutoAdvance, {once:true});
+window.addEventListener('touchstart', cancelAutoAdvance, {once:true});
+document.querySelectorAll('.g-top a, .g-top input').forEach(el=>{
+  el.addEventListener('click', cancelAutoAdvance);
+  el.addEventListener('focus', cancelAutoAdvance);
 });
+setTimeout(()=>{
+  if(!autoAdvanceCancelled){ jumpTo('portfolio'); }
+}, 3000);
 
-// initial render
-applyFilters();
+function runAudit(){
+  const title = document.getElementById('auditTitle').value.trim();
+  const keyword = document.getElementById('auditKeyword').value.trim().toLowerCase();
+  const meta = document.getElementById('auditMeta').value.trim();
+  const checks = [];
+  let score = 0;
+  const maxScore = 5;
 
-// AI Overview typing effect
-const aiText = "Muhammad Ahsan Ul Haq is an <b>SEO Specialist</b> with <b>2.5+ years of experience</b> managing organic growth for <b>50+ clients</b> across e-commerce and local business sectors. As <b>SEO Manager at Finix Solution</b>, he ranked a Shopify store <b>#3 organically</b> and recovered a penalized WordPress site from unranked to <b>page 3–4</b>, while building <b>450 backlinks in 6 months</b>. Previously, as <b>SEO Executive at Lime Software Logics</b>, he led strategy for <b>47+ clients</b> and generated <b>580+ backlinks/month</b> through outreach and content placements. His toolkit spans <b>technical, on-page, and local SEO</b> using Moz, SEMrush, and BrightLocal — plus early adoption of <b>AI-driven search readiness</b> (chatbot integration, llms.txt). He is currently pursuing an <b>MBA at Iqra University</b> and holds <b>14 Google Digital Garage certifications</b>.";
-
-function typeAIOverview(){
-  const el = document.getElementById('aiBody');
-  const box = document.getElementById('aiOverview');
-  box.classList.add('show');
-  el.innerHTML = '<span class="typed-cursor">&nbsp;</span>';
-  let i = 0;
-  const speed = 12; // ms per chunk
-  function step(){
-    if(i <= aiText.length){
-      // find next tag boundary to avoid chopping HTML mid-tag
-      let next = i + 3;
-      if(aiText[i] === '<'){
-        next = aiText.indexOf('>', i) + 1;
-      }
-      i = next;
-      el.innerHTML = aiText.slice(0, i) + '<span class="typed-cursor">&nbsp;</span>';
-      setTimeout(step, speed);
-    } else {
-      el.innerHTML = aiText;
-    }
+  // Title length
+  if(title.length === 0){
+    checks.push({ok:false, label:'Page title', detail:'No title entered.'});
+  } else if(title.length >= 50 && title.length <= 60){
+    checks.push({ok:true, label:'Title length', detail:`${title.length} characters — right in Google's ideal 50–60 range.`});
+    score++;
+  } else if(title.length > 0){
+    checks.push({ok:false, label:'Title length', detail:`${title.length} characters — aim for 50–60 so it isn't cut off in search results.`});
   }
-  step();
+
+  // Title keyword
+  if(keyword && title.toLowerCase().includes(keyword)){
+    checks.push({ok:true, label:'Keyword in title', detail:'Your target keyword appears in the title — good for relevance.'});
+    score++;
+  } else if(keyword){
+    checks.push({ok:false, label:'Keyword in title', detail:'Your target keyword isn\'t in the title. Add it naturally near the front.'});
+  }
+
+  // Meta length
+  if(meta.length === 0){
+    checks.push({ok:false, label:'Meta description', detail:'No meta description entered — Google may auto-generate one, which hurts click-through.'});
+  } else if(meta.length >= 150 && meta.length <= 160){
+    checks.push({ok:true, label:'Meta description length', detail:`${meta.length} characters — ideal length, won't get truncated.`});
+    score++;
+  } else {
+    checks.push({ok:false, label:'Meta description length', detail:`${meta.length} characters — aim for 150–160 for the best display in results.`});
+  }
+
+  // Meta keyword
+  if(keyword && meta.toLowerCase().includes(keyword)){
+    checks.push({ok:true, label:'Keyword in meta description', detail:'Keyword found in your meta description — helps relevance and click-through.'});
+    score++;
+  } else if(keyword && meta.length > 0){
+    checks.push({ok:false, label:'Keyword in meta description', detail:'Consider working your target keyword into the meta description too.'});
+  }
+
+  // Keyword entered at all
+  if(keyword){
+    checks.push({ok:true, label:'Target keyword defined', detail:`Optimizing around: "${keyword}"`});
+    score++;
+  } else {
+    checks.push({ok:false, label:'Target keyword', detail:'No target keyword entered — every page should be optimized around one.'});
+  }
+
+  const pct = Math.round((score/maxScore)*100);
+  const circle = document.getElementById('auditScoreCircle');
+  circle.textContent = pct + '%';
+  let color = '#E5484D';
+  if(pct >= 80) color = '#0EA968'; else if(pct >= 50) color = '#F5B942';
+  circle.style.borderColor = color;
+  circle.style.color = color;
+
+  const label = document.getElementById('auditScoreLabel');
+  label.textContent = pct >= 80 ? 'Strong SEO basics!' : pct >= 50 ? 'Decent, but room to improve' : 'Needs work — let\'s fix this';
+
+  const container = document.getElementById('auditChecks');
+  container.innerHTML = checks.map(c => `
+    <div class="audit-check">
+      <span class="icon">${c.ok ? '✅' : '⚠️'}</span>
+      <div class="txt"><b>${c.label}</b><span>${c.detail}</span></div>
+    </div>
+  `).join('');
+
+  document.getElementById('auditResults').classList.add('show');
 }
 
-window.addEventListener('load', ()=> setTimeout(typeAIOverview, 300));
+const line = document.getElementById('rankLine');
+const length = line.getTotalLength ? line.getTotalLength() : 400;
+line.style.strokeDasharray = length;
+line.style.strokeDashoffset = length;
+requestAnimationFrame(()=>{
+  line.style.transition = 'stroke-dashoffset 1.8s ease';
+  line.style.strokeDashoffset = 0;
+});
+const rankNum = document.getElementById('rankNum');
+let val = 22; const target = 7;
+const interval = setInterval(()=>{
+  val -= 1; rankNum.textContent = val;
+  if(val <= target){ clearInterval(interval); rankNum.textContent = target; }
+}, 90);
 </script>
 </body>
 </html>
