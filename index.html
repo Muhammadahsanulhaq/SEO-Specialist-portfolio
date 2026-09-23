@@ -207,20 +207,29 @@
   .tool-pill{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 18px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;}
   .tool-pill .sq{width:8px;height:8px;border-radius:2px;background:var(--blue);}
 
-  /* timeline */
-  .timeline{position:relative;padding-left:28px;border-left:2px solid var(--line);}
-  .tl-item{position:relative;padding-bottom:32px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-item::before{content:"";position:absolute;left:-34px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--blue);}
-  .tl-year{font-size:13px;color:var(--blue);font-weight:700;}
-  .tl-item h3{font-size:17px;margin:4px 0 2px;}
-  .tl-item span{font-size:13.5px;color:var(--muted);}
-
   /* CONTACT */
   .contact-band{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:52px 44px;text-align:center;}
   .contact-band h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:14px;}
   .contact-band p{color:var(--muted);font-size:16px;max-width:520px;margin:0 auto 30px;}
   .contact-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .contact-form{max-width:520px;margin:0 auto;text-align:left;}
+  .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  @media (max-width:520px){.cf-row{grid-template-columns:1fr;}}
+  .contact-form input,.contact-form textarea{
+    width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:6px;
+    padding:12px 14px;color:var(--ink);font-family:'Manrope',sans-serif;font-size:14.5px;resize:vertical;margin-bottom:12px;
+  }
+  .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--blue);}
+
+  /* FAQ */
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--ink);font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;padding:20px 4px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .faq-q .chev{color:var(--blue);font-size:14px;flex-shrink:0;transition:transform .2s ease;}
+  .faq-item.open .faq-q .chev{transform:rotate(180deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-item.open .faq-a{max-height:400px;}
+  .faq-a p{padding:0 4px 20px;color:var(--muted);font-size:14.5px;line-height:1.7;}
 
   footer{text-align:center;padding:32px 0;color:var(--muted);font-size:13px;}
   footer a{color:var(--blue);text-decoration:none;}
@@ -238,9 +247,9 @@
         <li><a href="javascript:void(0)" onclick="jump('about');closeMenu()">About</a></li>
         <li><a href="javascript:void(0)" onclick="jump('services');closeMenu()">Services</a></li>
         <li><a href="javascript:void(0)" onclick="jump('case-studies');closeMenu()">Case Studies</a></li>
-        <li><a href="javascript:void(0)" onclick="jump('experience');closeMenu()">Experience</a></li>
         <li><a href="javascript:void(0)" onclick="jump('tools');closeMenu()">Tools</a></li>
-        <li><a href="javascript:void(0)" class="nav-cta" onclick="jump('contact');closeMenu()">Contact</a></li>
+        <li><a href="javascript:void(0)" onclick="jump('faq');closeMenu()">FAQ</a></li>
+        <li><a href="javascript:void(0)" class="nav-cta" onclick="jump('contact');closeMenu()">Let's Talk SEO</a></li>
       </ul>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
@@ -255,7 +264,7 @@
     <div>
       <p class="eyebrow">SEO Specialist · SEO Manager</p>
       <h1>SEO strategy built around visibility, authority, and business growth.</h1>
-      <p class="hero-lead">I'm Muhammad Ahsan Ul Haq. I work across technical SEO, on-page, off-page, local SEO, and emerging AI search (AEO/GEO) — for e-commerce websites in the USA and Pakistan markets. 2.5+ years of hands-on experience managing real client websites, not just SEO tasks.</p>
+      <p class="hero-lead">I work with local service businesses and e-commerce stores that rely on Google for customers — not with anyone looking for guaranteed rankings or a cheap package deal. 2.5+ years of hands-on SEO across technical, on-page, off-page, local, and AI search (AEO/GEO), for real client websites in the USA and Pakistan.</p>
       <div class="hero-ctas">
         <a href="javascript:void(0)" onclick="jump('case-studies')" class="btn btn-primary">View My Work</a>
         <a href="javascript:void(0)" onclick="jump('contact')" class="btn btn-outline">Let's Talk SEO</a>
@@ -287,6 +296,96 @@
     <div class="trust-cell"><b>47+</b><span>Clients at Lime Software Logics</span></div>
     <div class="trust-cell"><b>USA / UK / PK</b><span>Markets worked in</span></div>
     <div class="trust-cell"><b>20+</b><span>Pages optimized (Finix)</span></div>
+  </div>
+</section>
+
+<!-- 6. CASE STUDIES -->
+<section id="case-studies" class="container">
+  <div class="sec-head">
+    <p class="sec-eyebrow">Case studies</p>
+    <h2>Real client work, real numbers.</h2>
+    <p>Both projects below are current work at Finix Solution. Diagrams are illustrative representations of documented results, not screenshots.</p>
+  </div>
+
+  <div class="case">
+    <div class="case-top">
+      <span class="case-badge">CASE STUDY 01</span>
+      <span class="case-badge" style="color:var(--muted);background:transparent;">WordPress · USA</span>
+    </div>
+    <h3>USA Custom Patches — SEO Recovery &amp; Organic Growth</h3>
+    <p class="case-meta">Industry: Custom patches (e-commerce) · Client via Finix Solution</p>
+
+    <div class="flow-row">
+      <div class="flow-step"><div class="lbl">Challenge</div><p>Poor visibility, plus a legacy spam issue involving 1,800+ toxic backlinks.</p></div>
+      <div class="flow-step"><div class="lbl">Strategy</div><p>Technical cleanup, keyword mapping, and a link-quality audit before any new content or authority work.</p></div>
+      <div class="flow-step"><div class="lbl">Execution</div><p>Schema, on-page fixes, GBP setup, citation building, backlink research, and disavow of toxic links.</p></div>
+      <div class="flow-step"><div class="lbl">Results</div><p>Moved from unranked/deep pages toward page 3–4 visibility while the spam issue was addressed.</p></div>
+    </div>
+
+    <div class="rank-diagram">
+      <p class="cap">Illustrative diagram — visibility trend over the engagement (not an actual Search Console screenshot)</p>
+      <svg class="rank-svg" viewBox="0 0 320 100" preserveAspectRatio="none" role="img" aria-label="Diagram showing visibility improving from unranked toward page 3 to 4">
+        <polyline points="0,85 60,84 120,70 180,55 240,40 300,32" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="case-metrics">
+      <div class="m"><b>+1,200%</b><span>Google Business Profile interactions</span></div>
+      <div class="m"><b>+2,000%</b><span>Calls from the listing</span></div>
+      <div class="m"><b>+935%</b><span>Website clicks from the profile</span></div>
+      <div class="m"><b>1,800+</b><span>Toxic backlinks addressed</span></div>
+      <div class="m"><b>Page 3–4</b><span>Visibility reached (from unranked)</span></div>
+      <div class="m"><b>20+</b><span>Pages optimized (across both projects)</span></div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-top">
+      <span class="case-badge">CASE STUDY 02</span>
+      <span class="case-badge" style="color:var(--muted);background:transparent;">Shopify · Pakistan</span>
+    </div>
+    <h3>Pakistan Mobile Accessories — Shopify SEO Growth</h3>
+    <p class="case-meta">Industry: Mobile accessories (e-commerce) · Client via Finix Solution</p>
+
+    <div class="flow-row">
+      <div class="flow-step"><div class="lbl">Challenge</div><p>Little to no visibility for target product and category keywords.</p></div>
+      <div class="flow-step"><div class="lbl">Strategy</div><p>Keyword research focused on product intent, mapped directly to category and product pages.</p></div>
+      <div class="flow-step"><div class="lbl">Execution</div><p>Product schema, on-page optimization, Google Merchant Center and Business Profile setup, internal linking.</p></div>
+      <div class="flow-step"><div class="lbl">Results</div><p>Achieved a #3 organic ranking for the documented target visibility.</p></div>
+    </div>
+
+    <div class="rank-diagram">
+      <p class="cap">Illustrative diagram — ranking movement for the primary tracked term</p>
+      <svg class="rank-svg" viewBox="0 0 320 100" preserveAspectRatio="none" role="img" aria-label="Diagram showing ranking movement from unranked to position 3">
+        <polyline points="0,88 60,80 120,60 180,38 240,20 300,12" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="300" cy="12" r="5" fill="#22C55E"/>
+      </svg>
+    </div>
+
+    <div class="case-metrics">
+      <div class="m"><b>#3</b><span>Organic ranking achieved</span></div>
+      <div class="m"><b>Shopify</b><span>Platform</span></div>
+      <div class="m"><b>Pakistan</b><span>Target market</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. RESULTS / DATA -->
+<section class="container">
+  <div class="sec-head">
+    <p class="sec-eyebrow">Results</p>
+    <h2>The numbers behind the work.</h2>
+    <p>Every figure below is documented from actual client engagements — nothing projected or estimated.</p>
+  </div>
+  <div class="results-grid">
+    <div class="result-card"><b>2.5+</b><span>Years in SEO</span></div>
+    <div class="result-card"><b>50+</b><span>Clients (career total)</span></div>
+    <div class="result-card"><b>47+</b><span>Clients at Lime Software Logics</span></div>
+    <div class="result-card"><b>580+</b><span>Backlinks/month (Lime, across 40+ clients)</span></div>
+    <div class="result-card"><b>450+</b><span>Backlinks built in 6 months (Finix)</span></div>
+    <div class="result-card"><b>1,800+</b><span>Toxic backlinks addressed (Finix)</span></div>
+    <div class="result-card"><b>50+</b><span>Qualified organic leads (Finix)</span></div>
+    <div class="result-card"><b>20+</b><span>Pages optimized (Finix)</span></div>
   </div>
 </section>
 
@@ -384,100 +483,13 @@
     <h2>The SEO process, step by step.</h2>
   </div>
   <div class="process-row">
-    <div class="process-step"><div class="num">01</div><h3>Research</h3><p>Keyword and competitor research to understand the landscape.</p></div>
-    <div class="process-step"><div class="num">02</div><h3>Audit</h3><p>Full technical and on-page audit to find what's limiting visibility.</p></div>
-    <div class="process-step"><div class="num">03</div><h3>Strategy</h3><p>A prioritized roadmap built around the audit findings.</p></div>
-    <div class="process-step"><div class="num">04</div><h3>Implementation</h3><p>Technical fixes, on-page changes, and content work.</p></div>
-    <div class="process-step"><div class="num">05</div><h3>Authority</h3><p>Backlink research, citations, and off-page authority building.</p></div>
-    <div class="process-step"><div class="num">06</div><h3>Measure</h3><p>Tracking rankings, traffic, and performance through GA4/GSC.</p></div>
-    <div class="process-step"><div class="num">07</div><h3>Optimize</h3><p>Ongoing refinement based on what the data shows.</p></div>
-  </div>
-</section>
-
-<!-- 6. CASE STUDIES -->
-<section id="case-studies" class="container">
-  <div class="sec-head">
-    <p class="sec-eyebrow">Case studies</p>
-    <h2>Real client work, real numbers.</h2>
-    <p>Both projects below are current work at Finix Solution. Diagrams are illustrative representations of documented results, not screenshots.</p>
-  </div>
-
-  <div class="case">
-    <div class="case-top">
-      <span class="case-badge">CASE STUDY 01</span>
-      <span class="case-badge" style="color:var(--muted);background:transparent;">WordPress · USA</span>
-    </div>
-    <h3>USA Custom Patches — SEO Recovery &amp; Organic Growth</h3>
-    <p class="case-meta">Industry: Custom patches (e-commerce) · Client via Finix Solution</p>
-
-    <div class="flow-row">
-      <div class="flow-step"><div class="lbl">Challenge</div><p>Poor visibility, plus a legacy spam issue involving 1,800+ toxic backlinks.</p></div>
-      <div class="flow-step"><div class="lbl">Strategy</div><p>Technical cleanup, keyword mapping, and a link-quality audit before any new content or authority work.</p></div>
-      <div class="flow-step"><div class="lbl">Execution</div><p>Schema, on-page fixes, GBP setup, citation building, backlink research, and disavow of toxic links.</p></div>
-      <div class="flow-step"><div class="lbl">Results</div><p>Moved from unranked/deep pages toward page 3–4 visibility while the spam issue was addressed.</p></div>
-    </div>
-
-    <div class="rank-diagram">
-      <p class="cap">Illustrative diagram — visibility trend over the engagement (not an actual Search Console screenshot)</p>
-      <svg class="rank-svg" viewBox="0 0 320 100" preserveAspectRatio="none" role="img" aria-label="Diagram showing visibility improving from unranked toward page 3 to 4">
-        <polyline points="0,85 60,84 120,70 180,55 240,40 300,32" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </div>
-
-    <div class="case-metrics">
-      <div class="m"><b>1,800+</b><span>Toxic backlinks addressed</span></div>
-      <div class="m"><b>Page 3–4</b><span>Visibility reached (from unranked)</span></div>
-      <div class="m"><b>20+</b><span>Pages optimized (across both projects)</span></div>
-    </div>
-  </div>
-
-  <div class="case">
-    <div class="case-top">
-      <span class="case-badge">CASE STUDY 02</span>
-      <span class="case-badge" style="color:var(--muted);background:transparent;">Shopify · Pakistan</span>
-    </div>
-    <h3>Pakistan Mobile Accessories — Shopify SEO Growth</h3>
-    <p class="case-meta">Industry: Mobile accessories (e-commerce) · Client via Finix Solution</p>
-
-    <div class="flow-row">
-      <div class="flow-step"><div class="lbl">Challenge</div><p>Little to no visibility for target product and category keywords.</p></div>
-      <div class="flow-step"><div class="lbl">Strategy</div><p>Keyword research focused on product intent, mapped directly to category and product pages.</p></div>
-      <div class="flow-step"><div class="lbl">Execution</div><p>Product schema, on-page optimization, Google Merchant Center and Business Profile setup, internal linking.</p></div>
-      <div class="flow-step"><div class="lbl">Results</div><p>Achieved a #3 organic ranking for the documented target visibility.</p></div>
-    </div>
-
-    <div class="rank-diagram">
-      <p class="cap">Illustrative diagram — ranking movement for the primary tracked term</p>
-      <svg class="rank-svg" viewBox="0 0 320 100" preserveAspectRatio="none" role="img" aria-label="Diagram showing ranking movement from unranked to position 3">
-        <polyline points="0,88 60,80 120,60 180,38 240,20 300,12" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="300" cy="12" r="5" fill="#22C55E"/>
-      </svg>
-    </div>
-
-    <div class="case-metrics">
-      <div class="m"><b>#3</b><span>Organic ranking achieved</span></div>
-      <div class="m"><b>Shopify</b><span>Platform</span></div>
-      <div class="m"><b>Pakistan</b><span>Target market</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 7. RESULTS / DATA -->
-<section class="container">
-  <div class="sec-head">
-    <p class="sec-eyebrow">Results</p>
-    <h2>The numbers behind the work.</h2>
-    <p>Every figure below is documented from actual client engagements — nothing projected or estimated.</p>
-  </div>
-  <div class="results-grid">
-    <div class="result-card"><b>2.5+</b><span>Years in SEO</span></div>
-    <div class="result-card"><b>50+</b><span>Clients (career total)</span></div>
-    <div class="result-card"><b>47+</b><span>Clients at Lime Software Logics</span></div>
-    <div class="result-card"><b>580+</b><span>Backlinks/month (Lime, across 40+ clients)</span></div>
-    <div class="result-card"><b>450+</b><span>Backlinks built in 6 months (Finix)</span></div>
-    <div class="result-card"><b>1,800+</b><span>Toxic backlinks addressed (Finix)</span></div>
-    <div class="result-card"><b>50+</b><span>Qualified organic leads (Finix)</span></div>
-    <div class="result-card"><b>20+</b><span>Pages optimized (Finix)</span></div>
+    <div class="process-step"><div class="num">01</div><h3>Research</h3><p>Keyword research and competitor analysis using SEMrush and Moz.</p></div>
+    <div class="process-step"><div class="num">02</div><h3>Audit</h3><p>Technical and on-page audit — indexation, schema, site speed, content gaps.</p></div>
+    <div class="process-step"><div class="num">03</div><h3>Strategy</h3><p>A prioritized roadmap ranked by what's actually blocking visibility.</p></div>
+    <div class="process-step"><div class="num">04</div><h3>Implementation</h3><p>Technical fixes, on-page changes, schema markup, and content work.</p></div>
+    <div class="process-step"><div class="num">05</div><h3>Authority</h3><p>Backlink research, citation building, and toxic-link auditing.</p></div>
+    <div class="process-step"><div class="num">06</div><h3>Measure</h3><p>Rankings and traffic tracked through GA4, Search Console, and Tag Manager.</p></div>
+    <div class="process-step"><div class="num">07</div><h3>Optimize</h3><p>Ongoing refinement based on what the ranking and traffic data shows.</p></div>
   </div>
 </section>
 
@@ -633,27 +645,44 @@
   </div>
 </section>
 
-<!-- 14 / 17. EXPERIENCE TIMELINE -->
-<section id="experience" class="container">
+<!-- FAQ -->
+<section id="faq" class="container">
   <div class="sec-head">
-    <p class="sec-eyebrow">Experience</p>
-    <h2>Career progression.</h2>
+    <p class="sec-eyebrow">FAQ</p>
+    <h2>Frequently Asked Questions</h2>
   </div>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-year">2024</div>
-      <h3>SEO Executive</h3>
-      <span>Lime Software Logics (SMC-Pvt) Ltd. — managing SEO strategy across a growing client base.</span>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How long does it take to see SEO results?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>SEO is a long-game investment. Most clients see meaningful progress (first page rankings for target keywords) within 3-6 months of consistent optimization. Significant traffic and lead impact often takes 6-12 months. However, technical wins and foundational improvements start immediately. The timeline depends on your competitive landscape, current website foundation, and the keywords you're targeting.</p></div>
     </div>
-    <div class="tl-item">
-      <div class="tl-year">2025</div>
-      <h3>SEO Executive</h3>
-      <span>Lime Software Logics (SMC-Pvt) Ltd. — scaled to 47+ clients; on-page, off-page, and local SEO, using Moz, SEMrush, SEOptimer, and BrightLocal.</span>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you guarantee rankings?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>No — and I'd be honest with you upfront even if that costs me the project. Anyone promising a specific ranking is either guessing or lying; Google runs the algorithm, not me. What I can control, and what I do promise, is the work itself: a documented audit, a clear strategy, and execution you can actually see — the same technical fixes, content work, and link building that moved my current clients from unranked or deep pages toward page one. You'll always know exactly what I'm doing, why I'm doing it, and how it connects to your rankings.</p></div>
     </div>
-    <div class="tl-item">
-      <div class="tl-year">2026</div>
-      <h3>SEO Manager</h3>
-      <span>Finix Solution — leading end-to-end SEO for two e-commerce projects across the USA and Pakistan markets, including technical SEO, GBP, Merchant Center, and AI search readiness.</span>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I know you won't disappear after I get paid?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Fair question, and one worth asking anyone before you hire them. In practice: I run SEO work as an ongoing, documented process — regular ranking checks, monthly reporting, and a visible task log of what's been done (audits, content, schema, links, GBP updates), not a one-time invoice and silence. You'll see the actual work happening, not just a report claiming it did. If something isn't working, that shows up in the data fast, and we adjust — I'd rather you see the problem early than find out three months later.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you work with local businesses?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Yes. Local SEO is one of my core specialties. If you're a service business, local company, or anyone with a geographic market, I have proven strategies for Google Business Profile optimization, local citations, and local pack visibility. My experience includes helping local businesses dominate their markets in multiple cities.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can you work with an existing website?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Absolutely. Most of my work is optimizing existing websites. I conduct a full technical audit, identify problems, fix them, optimize your content, and build your authority. Whether your site is new or has been around for years, I can assess it and develop a strategy to improve its organic visibility.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do you price your services?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>I don't have fixed packages. Every business is different. To give you an accurate proposal, I need to understand your current situation, what you're trying to achieve, and how competitive your market is. That's why I recommend we have a conversation first. Let's talk about your specific needs, and I'll put together a tailored proposal that makes sense for your budget and goals.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What about international clients?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>I primarily focus on US market clients, but I have experience working internationally, including clients in Pakistan and other regions. If you're targeting English-language search markets or specific geographic regions, I can discuss how to approach your project. The core strategies remain the same, with localization adjustments.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Will you provide regular reports?<span class="chev">▼</span></button>
+      <div class="faq-a"><p>Yes. I provide monthly reports that focus on business outcomes—rankings for your target keywords, traffic trends, and how SEO improvements are connecting to business goals (leads, calls, revenue). I focus on clarity over jargon. You'll always know what's working and why.</p></div>
     </div>
   </div>
 </section>
@@ -662,12 +691,23 @@
 <section id="contact" class="container">
   <div class="contact-band">
     <h2>Have an SEO problem worth solving?</h2>
-    <p>Let's identify what's limiting your search visibility and build a practical roadmap around it.</p>
-    <div class="contact-ctas">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=SEO%20Consultation%20Request" target="_blank" rel="noopener" class="btn btn-primary">Book a Consultation</a>
-      <a href="mailto:Aulhaq65@gmail.com" class="btn btn-outline">Email Me</a>
+    <p>Let's identify what's limiting your search visibility and build a practical roadmap around it. Tell me a bit about your site and what you're trying to fix.</p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="cf-row">
+        <label for="cfName" class="visually-hidden">Name</label>
+        <input type="text" id="cfName" placeholder="Your name" required>
+        <label for="cfEmail" class="visually-hidden">Email</label>
+        <input type="email" id="cfEmail" placeholder="Your email" required>
+      </div>
+      <label for="cfMessage" class="visually-hidden">Message</label>
+      <textarea id="cfMessage" rows="4" placeholder="What's going on with your site, and what are you hoping to fix?" required></textarea>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Let's Talk SEO</button>
+    </form>
+
+    <div class="contact-ctas" style="margin-top:22px;">
+      <a href="mailto:Aulhaq65@gmail.com" class="btn btn-outline">Aulhaq65@gmail.com</a>
       <a href="https://linkedin.com/in/muhammad-ahsan-ul-haq-seo-specialist/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
-      <a href="resume.pdf" class="btn btn-outline" download>Download Resume</a>
     </div>
   </div>
 </section>
@@ -683,6 +723,19 @@
     const el = document.getElementById(id);
     if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
   }
+  function toggleFaq(btn){
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('cfName').value;
+    const email = document.getElementById('cfEmail').value;
+    const message = document.getElementById('cfMessage').value;
+    const subject = encodeURIComponent('SEO Inquiry from ' + name);
+    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=Aulhaq65@gmail.com&su=' + subject + '&body=' + body, '_blank');
+  });
   const menuBtn = document.getElementById('menuBtn');
   const navList = document.getElementById('navList');
   menuBtn.addEventListener('click', ()=>{
